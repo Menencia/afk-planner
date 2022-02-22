@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/uikit/dist/css/uikit.min.css";
+
+@import url('https://fonts.googleapis.com/css?family=Averia+Sans+Libre&display=swap');
+
+body {
+  font-family: 'Averia Sans Libre', cursive;
+}
