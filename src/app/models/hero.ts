@@ -37,28 +37,48 @@ export enum Ascension {
   Ascended5
 };
 
-export interface HeroData {
-  name?: string;
-  si?: number;
-  fi?: number;
-  engraving?: number;
+export interface HeroSave {
+  name: string;
+  ascension: Ascension;
+  siEnabled: boolean;
+  si: number;
+  fi: number;
+  engraving: number;
+  equipment: number;
 }
 
-export class Hero {
+export abstract class Hero {
 
-  constructor(
-    public name: string,
-    public faction: Faction,
-    public type: Type,
-    public classe: Classe,
-    public ascension: Ascension = Ascension.Elite,
-    public ascensionPriority: Ascension = Ascension.Elite,
-    public siEnabled: boolean = false,
-    public si: number = 0,
-    public fi: number = 0,
-    public engraving: number = 0,
-    public equipment: number = 0,
-  ) { }
+  abstract name: string;
+  abstract faction: Faction;
+  abstract type: Type;
+  abstract classe: Classe;
+  ascension: Ascension;
+  siEnabled: boolean;
+  si: number;
+  fi: number;
+  engraving: number;
+  equipment: number;
+
+  constructor() { 
+    this.ascension = Ascension.Elite;
+    this.siEnabled = false;
+    this.si = 0;
+    this.fi = 0;
+    this.engraving = 0;
+    this.equipment = 0;
+  }
+
+  load(data: HeroSave): Hero {
+    this.name = data.name;
+    this.ascension = data.ascension;
+    this.siEnabled = data.siEnabled;
+    this.si = data.si;
+    this.fi = data.fi;
+    this.engraving = data.engraving;
+    this.equipment = data.equipment;
+    return this;
+  }
 
   hasSI(): boolean {
     return this.ascension > Ascension.Mythic && this.siEnabled;
@@ -72,21 +92,9 @@ export class Hero {
     return this.ascension > Ascension.Ascended1;
   }
 
-  export(): HeroData {
-    const res: HeroData = {};
-    if (this.si > 0) {
-      res.si = this.si;
-    }
-    if (this.fi > 0) {
-      res.fi = this.fi;
-    }
-    if (this.engraving > 0) {
-      res.engraving = this.engraving;
-    }
-    if (Object.keys(res).length > 0) {
-      res.name = this.name;
-    }
-    return res;
+  export(): HeroSave {
+    const {name, ascension, siEnabled, si, fi, engraving, equipment} = this;
+    return {name, ascension, siEnabled, si, fi, engraving, equipment};
   }
 
 }

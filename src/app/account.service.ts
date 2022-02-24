@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Classe, Faction, Hero, HeroData, Type } from './models/hero';
+import { Hero, HeroSave } from './models/hero';
+import { initHeroes } from './models/hero-loader';
 import { PrioritySi } from './models/priorities/priority-si';
+import { Save } from './models/save';
+
+const SAVE_1 = 'afk-planner';
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +15,33 @@ export class AccountService {
   si: PrioritySi[];
 
   constructor() {
-    this.initHeroes();
+    this.heroes = initHeroes();
     this.si = [];
+
+    this.run();
   }
 
-  initHeroes(): void {
-    const list = ['Lucius', 'Rowan'];
-    const save = this.getSave();
-    list.forEach((name: string) => {
-      const hero = new Hero(name, Faction.LightBearer, Type.Strength, Classe.Tank);
-      const found = save.find((e: HeroData) => e.name === name);
-      if (found) {
-        Object.assign(hero, found);
-      }
-      this.heroes.push(hero);
-    });
-  }
-
-  getSave(): Hero[] {
-    let save = [];
-    const s = localStorage['heroes'];
+  run(): void {
+    // search for save
+    let save;
+    const s = localStorage[SAVE_1];
     if (s) {
       save = JSON.parse(atob(s));
     }
-    return save;
+
+    // load save
+    if (save) {
+      this.load(save);
+    }
+  }
+
+  load(save: Save): void {
+    save.heroes.forEach((heroSave: HeroSave) => {
+      const found = this.heroes.find(hero => hero.name === heroSave.name);
+      if (found) {
+        found.load(heroSave);
+      }
+    });
   }
 
   getHero(name: string): Hero {
@@ -45,14 +52,23 @@ export class AccountService {
     throw new Error('Hero not found');
   }
 
-  save(): void {
-    const data: HeroData[] = [];
+  export(): Save {
+    return {
+      heroes: this.exportHeroes()
+    };
+  }
+
+  exportHeroes(): HeroSave[] {
+    const res: HeroSave[] = [];
     this.heroes.forEach(hero => {
-      const d = hero.export();
-      if (Object.keys(d).length > 0) {
-        data.push(d);
-      }
+      res.push(hero.export());
     });
-    localStorage.setItem('heroes', btoa(JSON.stringify(data)));
+    return res;
+  }
+
+  save(): void {
+    const s = this.export();
+    const ss = btoa(JSON.stringify(s));
+    localStorage[SAVE_1] = ss;
   }
 }
