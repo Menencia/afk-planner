@@ -1,0 +1,42 @@
+<h2 class="uk-heading-divider">Se connecter</h2>
+<div class="uk-grid-divider" uk-grid>
+  <div class="uk-width-1-2@m">
+    <form class="uk-form-horizontal" #signin="ngForm">
+      <div class="uk-margin">
+        <div class="uk-form-label uk-text-bold">
+          Email
+        </div>
+        <div class="uk-form-controls">
+          <input class="uk-input"
+            id="signinEmail"
+            name="signinEmail"
+            type="text"
+            [(ngModel)]="values.email"
+            #signinEmail="ngModel"
+            required>
+        </div>
+      </div>
+      <div class="uk-margin">
+        <div class="uk-form-label uk-text-bold">
+          Mot de passe
+        </div>
+        <div class="uk-form-controls">
+          <input class="uk-input"
+            id="signinPassword"
+            name="signinPassword"
+            type="password"
+            [(ngModel)]="values.password"
+            #signinPassword="ngModel"
+            required>
+        </div>
+      </div>
+      <button class="uk-button uk-button-primary uk-align-right"
+        [disabled]="!signin.form.valid"
+        (click)="loginWithPassword()">Valider</button>
+    </form>
+  </div>
+
+  <div class="uk-width-1-2@m">
+
+  </div>
+</div>

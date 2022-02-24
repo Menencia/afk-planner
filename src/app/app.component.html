@@ -1,3 +1,40 @@
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+  <div class="uk-navbar-brand">
+    <a href="#" routerLink="/home" id="logo" class="uk-navbar-item uk-logo">
+      <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+      AFK/PLANNER
+    </a>
+  </div>
+  <div class="uk-navbar-right toggle-target collapsed">
+    <ul class="uk-navbar-nav">
+
+      <ng-container *ngIf="user; else showLogin">
+        <li class="uk-navbar-item">
+          <a href="#" (click)="logout()">
+            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+            Déconnexion
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-template #showLogin>
+        <li class="uk-navbar-item">
+          <a href="#" routerLink="/signup">
+            <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
+            S'inscrire
+          </a>
+        </li>
+        <li class="uk-navbar-item">
+          <a href="#" routerLink="/login">
+            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
+            Se connecter
+          </a>
+        </li>
+      </ng-template>
+
+    </ul>
+  </div>
+</nav>
 
 <div class="uk-container">
   <router-outlet></router-outlet>

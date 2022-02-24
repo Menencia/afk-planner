@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from './account.service';
-import { Hero } from './models/hero';
+import { User } from './models/user';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,26 @@ import { Hero } from './models/hero';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'afk-planner';
+  user: User | undefined;
 
-  constructor() {
+  constructor(
+    public auth: AuthService,
+    public router: Router
+  ) {
+    this.user = undefined;
   }
 
   ngOnInit() {
+    this.auth.user$.subscribe(data => {
+      if (data) {
+        this.user = new User().load(data);
+      }
+    });
+  }
+
+  logout() {
+    this.auth.logout();
+    this.user = undefined;
+    this.router.navigateByUrl('/home');
   }
 }

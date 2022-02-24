@@ -6,7 +6,7 @@ import { switchMap, map, take } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-import { User } from '../models/user';
+import { User, UserSave } from '../models/user';
 
 import * as moment from 'moment';
 
@@ -15,7 +15,7 @@ import * as moment from 'moment';
 })
 export class AuthService {
 
-  user$: Observable<User | undefined>;
+  user$: Observable<UserSave | undefined>;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -50,19 +50,10 @@ export class AuthService {
   private createUser(user: any, name: string, email: string) {
     const userRef = this.afs.doc(`users/${user.uid}`);
 
-    // build 4-digit number
-    let tag = Math.floor(Math.random() * 10000).toString();
-    while (tag.length < 4) {
-      tag = '0' + tag;
-    }
-    tag = name + '-' + tag;
-
     const userObj = {
       uid: user.uid,
       name,
       email,
-      tag,
-      privateProfile: false,
       lastConnected: moment().toDate()
     };
 
