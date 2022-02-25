@@ -1,5 +1,5 @@
 <h1 class="text-3xl font-bold underline">
-  Heroes <button class="uk-button" (click)="save()">save</button>
+  Heroes
 </h1>
 
 <div class="uk-grid-divider" uk-grid>
@@ -21,13 +21,13 @@
       </p>
       <p class="uk-text-bold">{{currentHero.name}}</p>
       <p><label for="si">SI</label>
-        <input name="si" type="number" [(ngModel)]="currentHero.si" class="uk-input" />
+        <input name="si" type="number" [(ngModel)]="currentHero.si" (blur)="saveHero(currentHero)" class="uk-input" />
       </p>
       <p><label for="si">FI</label>
-        <input name="si" type="number" [(ngModel)]="currentHero.fi" class="uk-input" />
+        <input name="si" type="number" [(ngModel)]="currentHero.fi" (blur)="saveHero(currentHero)" class="uk-input" />
       </p>
       <p><label for="si">Engraving</label>
-        <input name="si" type="number" [(ngModel)]="currentHero.engraving" class="uk-input" />
+        <input name="si" type="number" [(ngModel)]="currentHero.engraving" (blur)="saveHero(currentHero)" class="uk-input" />
       </p>
     </div>
   </div>

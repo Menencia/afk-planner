@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
+import { DataService } from '../models/data.service';
 import { Hero } from '../models/hero';
 
 @Component({
@@ -15,6 +16,7 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     public accountService: AccountService,
+    public dataService: DataService,
     public router: Router
   ) {
     this.heroes = this.accountService.heroes;
@@ -32,8 +34,8 @@ export class HeroesComponent implements OnInit {
     this.currentHero = null;
   }
 
-  save(): void {
-    this.accountService.save();
+  saveHero(hero: Hero) {
+    this.dataService.saveHero(hero);
   }
 
 }

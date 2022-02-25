@@ -38,6 +38,7 @@ export enum Ascension {
 };
 
 export interface HeroSave {
+  uid: string;
   name: string;
   ascension: Ascension;
   siEnabled: boolean;
@@ -49,6 +50,7 @@ export interface HeroSave {
 
 export abstract class Hero {
 
+  uid: string;
   abstract name: string;
   abstract faction: Faction;
   abstract type: Type;
@@ -60,7 +62,8 @@ export abstract class Hero {
   engraving: number;
   equipment: number;
 
-  constructor() { 
+  constructor() {
+    this.uid = '';
     this.ascension = Ascension.Elite;
     this.siEnabled = false;
     this.si = 0;
@@ -70,6 +73,7 @@ export abstract class Hero {
   }
 
   load(data: HeroSave): Hero {
+    this.uid = data.uid;
     this.name = data.name;
     this.ascension = data.ascension;
     this.siEnabled = data.siEnabled;
@@ -93,8 +97,8 @@ export abstract class Hero {
   }
 
   export(): HeroSave {
-    const {name, ascension, siEnabled, si, fi, engraving, equipment} = this;
-    return {name, ascension, siEnabled, si, fi, engraving, equipment};
+    const {uid, name, ascension, siEnabled, si, fi, engraving, equipment} = this;
+    return {uid, name, ascension, siEnabled, si, fi, engraving, equipment};
   }
 
 }

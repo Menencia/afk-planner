@@ -50,7 +50,6 @@ export class SignupComponent implements OnInit {
         .then(() => {
           this.resetValues();
           Utils.notify('Votre compte a créé avec succès.');
-          console.log(email, password)
           this.auth.loginWithPassword(email, password)
             .then(() => {
               this.auth.user$.subscribe(data => {

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { DataService } from './models/data.service';
 import { Hero, HeroSave } from './models/hero';
 import { initHeroes } from './models/hero-loader';
 import { PrioritySi } from './models/priorities/priority-si';
 import { Save } from './models/save';
-
-const SAVE_1 = 'afk-planner';
+import { AuthService } from './services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +14,20 @@ export class AccountService {
   heroes: Hero[] = [];
   si: PrioritySi[];
 
-  constructor() {
+  constructor(
+    public auth: AuthService,
+    public dataService: DataService
+  ) {
     this.heroes = initHeroes();
     this.si = [];
 
     this.run();
   }
 
-  run(): void {
+  async run(): Promise<void> {
     // search for save
-    let save;
-    const s = localStorage[SAVE_1];
-    if (s) {
-      save = JSON.parse(atob(s));
-    }
+    let save: Save = {heroes: []};
+    save.heroes = await this.dataService.getHeroes();
 
     // load save
     if (save) {
@@ -64,11 +64,5 @@ export class AccountService {
       res.push(hero.export());
     });
     return res;
-  }
-
-  save(): void {
-    const s = this.export();
-    const ss = btoa(JSON.stringify(s));
-    localStorage[SAVE_1] = ss;
   }
 }
