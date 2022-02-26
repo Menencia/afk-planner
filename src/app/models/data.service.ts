@@ -19,7 +19,7 @@ export class DataService {
     const user = await this.auth.getUser().then();
     if (user) {
       const ref = collection(this.firestore, `users/${user.uid}/heroes`);
-      const heroes$: Observable<Partial<Hero>[]> = collectionData(ref);
+      const heroes$: Observable<Partial<Hero>[]> = collectionData(ref, {idField: 'uid'});
       const heroes = await firstValueFrom(heroes$);
       return heroes;
     }
