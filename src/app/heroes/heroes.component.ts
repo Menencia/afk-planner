@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { DataService } from '../models/data.service';
-import { Hero } from '../models/hero';
+import { Faction, Hero } from '../models/hero';
 
 @Component({
   selector: 'app-heroes',
@@ -12,13 +12,26 @@ import { Hero } from '../models/hero';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[] = [];
+  filteredHeroes: Hero[] = [];
   currentHero: Hero | null = null;
+  factions: Faction[];
+  currentFilter: Faction | null = null;
 
   constructor(
     public accountService: AccountService,
     public dataService: DataService,
     public router: Router
-  ) { }
+  ) {
+    this.factions = [
+      Faction.LightBearer,
+      Faction.Mauler,
+      Faction.Wilder,
+      Faction.Graveborn,
+      Faction.Celestial,
+      Faction.Hypogean,
+      Faction.Dimensional
+    ]; 
+  }
 
   ngOnInit() {
     this.getHeroes();
@@ -26,6 +39,17 @@ export class HeroesComponent implements OnInit {
 
   async getHeroes() {
     this.heroes = await this.accountService.getHeroes();
+    this.filteredHeroes = this.heroes;
+  }
+
+  filterFaction(faction: Faction) {
+    if (this.currentFilter !== faction) {
+      this.currentFilter = faction;
+      this.filteredHeroes = this.heroes.filter(hero => hero.faction === faction);
+    } else {
+      this.currentFilter = null;
+      this.filteredHeroes = this.heroes;
+    }
   }
 
   editHero(hero: Hero) {

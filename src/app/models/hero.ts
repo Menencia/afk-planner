@@ -1,11 +1,11 @@
 export enum Faction {
-  LightBearer,
-  Mauler,
-  Wilder,
-  Graveborn,
-  Celestial,
-  Hypogean,
-  Dimensional
+  LightBearer = 'lightbearers',
+  Mauler = 'maulers',
+  Wilder = 'wilders',
+  Graveborn = 'graveborns',
+  Celestial = 'celestials',
+  Hypogean = 'hypogeans',
+  Dimensional = 'dimensionals'
 }
 
 export enum Type {

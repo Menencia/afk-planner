@@ -1,3 +1,14 @@
 .hero {
   cursor: pointer;
 }
+
+.filter {
+  width: 30px;
+  margin-left: 3px;
+  opacity: 0.2;
+  cursor: pointer;
+
+  &.active {
+    opacity: 1;
+  }
+}

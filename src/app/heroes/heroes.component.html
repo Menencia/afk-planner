@@ -4,8 +4,17 @@
 
 <div class="uk-grid-divider" uk-grid>
   <div class="uk-width-2-3@m">
+
+    <div>Filters: 
+      <img *ngFor="let faction of factions" 
+            (click)="filterFaction(faction)" 
+            class="filter"
+            [class.active]="currentFilter === faction"
+            [src]="'assets/factions/' + faction + '.png'" />
+    </div>
+
     <ul class="uk-list uk-list-divider">
-      <li *ngFor="let hero of heroes" (click)="editHero(hero)" class="hero">
+      <li *ngFor="let hero of filteredHeroes" (click)="editHero(hero)" class="hero">
         {{hero.name}}
         SI: {{hero.si}}
         F: {{hero.fi}}
