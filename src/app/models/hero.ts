@@ -23,7 +23,15 @@ export enum Classe {
 }
 
 export enum Role {
-  Buffer
+  Tank,
+  Aoe,
+  Continuous,
+  Debuffer,
+  Control,
+  Buffer,
+  Burst,
+  Regen,
+  Assassin
 }
 
 export enum Ascension {
@@ -96,6 +104,7 @@ export class Hero {
     }
 
     if (Object.keys(res).length > 0) {
+      res.id = this.id;
       res.name = this.name;
       return res;
     }
