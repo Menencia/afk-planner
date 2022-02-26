@@ -1,5 +1,9 @@
 .hero {
   cursor: pointer;
+
+  &.active {
+    font-weight: bold;
+  }
 }
 
 .filter {

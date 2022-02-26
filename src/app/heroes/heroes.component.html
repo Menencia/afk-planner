@@ -1,5 +1,5 @@
 <h1 class="text-3xl font-bold underline">
-  Heroes
+  Heroes ({{filteredHeroes.length}})
 </h1>
 
 <div class="uk-grid-divider" uk-grid>
@@ -14,7 +14,10 @@
     </div>
 
     <ul class="uk-list uk-list-divider">
-      <li *ngFor="let hero of filteredHeroes" (click)="editHero(hero)" class="hero">
+      <li *ngFor="let hero of filteredHeroes" 
+          (click)="editHero(hero)" 
+          [class.active]="currentHero === hero"
+          class="hero">
         {{hero.name}}
         SI: {{hero.si}}
         F: {{hero.fi}}
@@ -24,10 +27,11 @@
   </div>
 
   <div class="uk-width-1-3@m">
-    <div *ngIf="currentHero">
+    <div *ngIf="currentHero" uk-sticky>
       <p class="uk-float-right">
         <a (click)="closeHero()"><span uk-icon="icon: close"></span></a>
       </p>
+      <img [src]="currentHero.getImage()" />
       <p class="uk-text-bold">{{currentHero.name}}</p>
       <p><label for="si">SI</label>
         <input name="si" type="number" [(ngModel)]="currentHero.si" (blur)="saveHero(currentHero)" class="uk-input" />

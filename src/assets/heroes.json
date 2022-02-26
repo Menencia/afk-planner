@@ -288,7 +288,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 38,
+    "id": 37,
     "name": "Antandra",
     "type": "agility",
     "class": "warrior",
@@ -296,7 +296,7 @@
     "faction": "maulers"
   },
   {
-    "id": 39,
+    "id": 38,
     "name": "Satrana",
     "type": "intelligence",
     "class": "mage",
@@ -304,7 +304,7 @@
     "faction": "maulers"
   },
   {
-    "id": 40,
+    "id": 39,
     "name": "Zolrath",
     "type": "agility",
     "class": "warrior",
@@ -312,7 +312,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 41,
+    "id": 40,
     "name": "Gwyneth",
     "type": "strength",
     "class": "ranger",
@@ -320,7 +320,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 42,
+    "id": 41,
     "name": "Orthros",
     "type": "strength",
     "class": "tank",
@@ -328,7 +328,7 @@
     "faction": "celestials"
   },
   {
-    "id": 43,
+    "id": 42,
     "name": "Lorsan",
     "type": "intelligence",
     "class": "mage",
@@ -336,7 +336,7 @@
     "faction": "wilders"
   },
   {
-    "id": 44,
+    "id": 43,
     "name": "Rigby",
     "type": "strength",
     "class": "warrior",
@@ -344,7 +344,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 45,
+    "id": 44,
     "name": "Tidus",
     "type": "agility",
     "class": "ranger",
@@ -352,7 +352,7 @@
     "faction": "maulers"
   },
   {
-    "id": 46,
+    "id": 45,
     "name": "Izold",
     "type": "strength",
     "class": "warrior",
@@ -360,7 +360,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 47,
+    "id": 46,
     "name": "Talene",
     "type": "agility",
     "class": "support",
@@ -368,7 +368,7 @@
     "faction": "celestials"
   },
   {
-    "id": 48,
+    "id": 47,
     "name": "Arthur",
     "type": "strength",
     "class": "tank",
@@ -376,7 +376,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 49,
+    "id": 48,
     "name": "Khazard",
     "type": "intelligence",
     "class": "mage",
@@ -384,7 +384,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 50,
+    "id": 49,
     "name": "Wu Kong",
     "type": "strength",
     "class": "warrior",
@@ -392,7 +392,7 @@
     "faction": "celestials"
   },
   {
-    "id": 51,
+    "id": 50,
     "name": "Skriath",
     "type": "intelligence",
     "class": "mage",
@@ -400,7 +400,7 @@
     "faction": "maulers"
   },
   {
-    "id": 52,
+    "id": 51,
     "name": "Solise",
     "type": "intelligence",
     "class": "mage",
@@ -408,7 +408,7 @@
     "faction": "wilders"
   },
   {
-    "id": 53,
+    "id": 52,
     "name": "Cecilia",
     "type": "agility",
     "class": "ranger",
@@ -416,7 +416,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 54,
+    "id": 53,
     "name": "Mezoth",
     "type": "strength",
     "class": "tank",
@@ -424,7 +424,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 55,
+    "id": 54,
     "name": "Oden",
     "type": "intelligence",
     "class": "mage",
@@ -432,7 +432,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 56,
+    "id": 55,
     "name": "Oscar",
     "type": "agility",
     "class": "ranger",
@@ -440,7 +440,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 57,
+    "id": 56,
     "name": "Ukyo",
     "type": "agility",
     "class": "warrior",
@@ -448,7 +448,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 58,
+    "id": 57,
     "name": "Saurus",
     "type": "strength",
     "class": "warrior",
@@ -456,7 +456,7 @@
     "faction": "wilders"
   },
   {
-    "id": 59,
+    "id": 58,
     "name": "Torne",
     "type": "strength",
     "class": "tank",
@@ -464,7 +464,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 60,
+    "id": 59,
     "name": "Anoki",
     "type": "strength",
     "class": "tank",
@@ -472,7 +472,7 @@
     "faction": "maulers"
   },
   {
-    "id": 61,
+    "id": 60,
     "name": "Flora",
     "type": "intelligence",
     "class": "mage",
@@ -480,7 +480,7 @@
     "faction": "celestials"
   },
   {
-    "id": 62,
+    "id": 61,
     "name": "Nakoruru",
     "type": "agility",
     "class": "ranger",
@@ -488,7 +488,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 63,
+    "id": 62,
     "name": "Daimon",
     "type": "strength",
     "class": "tank",
@@ -496,7 +496,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 64,
+    "id": 63,
     "name": "Ezio",
     "type": "agility",
     "class": "ranger",
@@ -504,7 +504,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 65,
+    "id": 64,
     "name": "Drez",
     "type": "agility",
     "class": "ranger",
@@ -512,7 +512,7 @@
     "faction": "maulers"
   },
   {
-    "id": 66,
+    "id": 65,
     "name": "Theowyn",
     "type": "agility",
     "class": "ranger",
@@ -520,7 +520,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 67,
+    "id": 66,
     "name": "Zaphrael",
     "type": "intelligence",
     "class": "mage",
@@ -528,7 +528,7 @@
     "faction": "celestials"
   },
   {
-    "id": 68,
+    "id": 67,
     "name": "Lucretia",
     "type": "agility",
     "class": "ranger",
@@ -536,7 +536,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 69,
+    "id": 68,
     "name": "Albedo",
     "type": "strength",
     "class": "tank",
@@ -544,7 +544,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 70,
+    "id": 69,
     "name": "Ainz Ooal Gown",
     "type": "intelligence",
     "class": "mage",
@@ -552,7 +552,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 71,
+    "id": 70,
     "name": "Pippa",
     "type": "intelligence",
     "class": "mage",
@@ -560,7 +560,7 @@
     "faction": "wilders"
   },
   {
-    "id": 72,
+    "id": 71,
     "name": "Silas",
     "type": "intelligence",
     "class": "support",
@@ -568,7 +568,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 73,
+    "id": 72,
     "name": "Mortas",
     "type": "agility",
     "class": "support",
@@ -576,7 +576,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 74,
+    "id": 73,
     "name": "Alna",
     "type": "agility",
     "class": "warrior",
@@ -584,7 +584,7 @@
     "faction": "celestials"
   },
   {
-    "id": 75,
+    "id": 74,
     "name": "QUEEN",
     "type": "strength",
     "class": "warrior",
@@ -592,7 +592,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 76,
+    "id": 75,
     "name": "JOKER",
     "type": "agility",
     "class": "ranger",
@@ -600,7 +600,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 77,
+    "id": 76,
     "name": "Kren",
     "type": "agility",
     "class": "ranger",
@@ -608,7 +608,7 @@
     "faction": "maulers"
   },
   {
-    "id": 78,
+    "id": 77,
     "name": "Respen",
     "type": "agility",
     "class": "ranger",
@@ -616,7 +616,7 @@
     "faction": "wilders"
   },
   {
-    "id": 79,
+    "id": 78,
     "name": "Eluard",
     "type": "intelligence",
     "class": "mage",
@@ -624,7 +624,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 80,
+    "id": 79,
     "name": "Peggy",
     "type": "intelligence",
     "class": "support",
@@ -632,7 +632,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 81,
+    "id": 80,
     "name": "Raku",
     "type": "agility",
     "class": "ranger",
@@ -640,7 +640,7 @@
     "faction": "wilders"
   },
   {
-    "id": 82,
+    "id": 81,
     "name": "Morael",
     "type": "intelligence",
     "class": "mage",
@@ -648,7 +648,7 @@
     "faction": "celestials"
   },
   {
-    "id": 83,
+    "id": 82,
     "name": "Prince of Persia",
     "type": "agility",
     "class": "ranger",
@@ -656,7 +656,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 84,
+    "id": 83,
     "name": "Desira",
     "type": "intelligence",
     "class": "support",
@@ -664,7 +664,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 85,
+    "id": 84,
     "name": "Leofric",
     "type": "intelligence",
     "class": "support",
@@ -672,7 +672,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 86,
+    "id": 85,
     "name": "Walker",
     "type": "strength",
     "class": "warrior",
@@ -680,7 +680,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 87,
+    "id": 86,
     "name": "Merlin",
     "type": "intelligence",
     "class": "support",
@@ -688,7 +688,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 88,
+    "id": 87,
     "name": "Thali",
     "type": "intelligence",
     "class": "mage",
@@ -696,7 +696,7 @@
     "faction": "maulers"
   },
   {
-    "id": 89,
+    "id": 88,
     "name": "Titus",
     "type": "strength",
     "class": "tank",
@@ -704,7 +704,7 @@
     "faction": "celestials"
   },
   {
-    "id": 90,
+    "id": 89,
     "name": "Hodgkin",
     "type": "strength",
     "class": "tank",
@@ -712,7 +712,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 91,
+    "id": 90,
     "name": "Morrow",
     "type": "intelligence",
     "class": "mage",
@@ -720,7 +720,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 92,
+    "id": 91,
     "name": "Zikis",
     "type": "agility",
     "class": "ranger",
@@ -728,7 +728,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 93,
+    "id": 92,
     "name": "Granit",
     "type": "strength",
     "class": "tank",
@@ -736,7 +736,7 @@
     "faction": "maulers"
   },
   {
-    "id": 94,
+    "id": 93,
     "name": "Leonard",
     "type": "intelligence",
     "class": "mage",
@@ -744,7 +744,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 95,
+    "id": 94,
     "name": "Mishka",
     "type": "strength",
     "class": "tank",
@@ -752,7 +752,7 @@
     "faction": "wilders"
   },
   {
-    "id": 96,
+    "id": 95,
     "name": "Haelus",
     "type": "intelligence",
     "class": "support",
@@ -760,7 +760,7 @@
     "faction": "celestials"
   },
   {
-    "id": 97,
+    "id": 96,
     "name": "Treznor",
     "type": "strength",
     "class": "ranger",
@@ -768,7 +768,7 @@
     "faction": "graveborns"
   },
   {
-    "id": 98,
+    "id": 97,
     "name": "Thesku",
     "type": "intelligence",
     "class": "mage",
@@ -776,7 +776,7 @@
     "faction": "maulers"
   },
   {
-    "id": 99,
+    "id": 98,
     "name": "Framton",
     "type": "strength",
     "class": "warrior",
@@ -784,7 +784,7 @@
     "faction": "hypogeans"
   },
   {
-    "id": 100,
+    "id": 99,
     "name": "Astar",
     "type": "intelligence",
     "class": "support",
@@ -792,7 +792,7 @@
     "faction": "wilders"
   },
   {
-    "id": 101,
+    "id": 100,
     "name": "Talene",
     "type": "intelligence",
     "class": "tank",
@@ -800,7 +800,7 @@
     "faction": "celestials"
   },
   {
-    "id": 102,
+    "id": 101,
     "name": "Scarlet",
     "type": "intelligence",
     "class": "mage",
@@ -808,7 +808,7 @@
     "faction": "lightbearers"
   },
   {
-    "id": 103,
+    "id": 102,
     "name": "Melusina",
     "type": "intelligence",
     "class": "mage",
@@ -816,7 +816,7 @@
     "faction": "dimensionals"
   },
   {
-    "id": 104,
+    "id": 103,
     "name": "Fane",
     "type": "agility",
     "class": "support",

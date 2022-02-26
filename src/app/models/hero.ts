@@ -72,6 +72,13 @@ export class Hero {
     return this;
   }
 
+  getImage(): string {
+    const name = this.name
+                     .toLocaleLowerCase()
+                     .replace(/ /g, '-');
+    return 'assets/heroes/' + this.id + '-' + name + '.jpg';
+  }
+
   hasSI(): boolean {
     return this.ascension > Ascension.Mythic && this.siEnabled;
   }
