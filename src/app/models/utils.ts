@@ -1,5 +1,3 @@
-import UIkit from 'uikit';
-
 export enum Status {
     Primary = 'primary',
     Danger = 'danger'
@@ -12,10 +10,10 @@ export class Utils {
     if (msg === msgError) {
       msg = 'Votre compte doit être activé par un admin.';
     }
-    UIkit.notification(msg, {
+    /*UIkit.notification(msg, {
       status,
       pos: 'bottom-right'
-    });
+    });*/
   }
 
 }

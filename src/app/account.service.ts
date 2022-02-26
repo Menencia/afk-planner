@@ -31,7 +31,6 @@ export class AccountService {
     // build save
     let save: Save = {heroes: []};
     save.heroes = await this.dataService.getHeroes();
-    console.log(save.heroes)
 
     // load save
     save.heroes.forEach((heroSave: Partial<Hero>) => {

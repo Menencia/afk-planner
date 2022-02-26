@@ -1,14 +1,14 @@
-<h2 class="uk-heading-divider">S'inscrire</h2>
-<div class="uk-grid-divider" uk-grid>
-  <div class="uk-width-1-2@m">
-    <form class="uk-form-horizontal" #signup="ngForm">
+<h2 class="text-3xl font-bold mb-4">Signup</h2>
+<div>
+  <div>
+    <form #signup="ngForm">
 
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
+      <div class="mb-4">
+        <div class="ui-label">
           Pseudo
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="name"
             name="name"
             type="text"
@@ -18,12 +18,12 @@
         </div>
       </div>
 
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
+      <div class="mb-4">
+        <div class="ui-label">
           Email
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="signupEmail"
             name="signupEmail"
             type="text"
@@ -33,12 +33,12 @@
         </div>
       </div>
 
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
-          Mot de passe
+      <div class="mb-4">
+        <div class="ui-label">
+          Password
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="signupPassword"
             name="signupPassword"
             type="password"
@@ -48,12 +48,12 @@
         </div>
       </div>
 
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
-          Répéter mot de passe
+      <div class="mb-4">
+        <div class="ui-label">
+          Repeat password
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="signupPasswordRepeat"
             name="signupPasswordRepeat"
             type="password"
@@ -63,12 +63,12 @@
         </div>
       </div>
 
-      <button class="uk-button uk-button-primary uk-align-right"
+      <button class="ui-button"
         [disabled]="!signup.form.valid"
-        (click)="createAccount()">Valider</button>
+        (click)="createAccount()">Confirm</button>
     </form>
   </div>
-  <div class="uk-width-1-2@m">
-
+  <div *ngIf="status !== ''">
+    {{status}}
   </div>
 </div>

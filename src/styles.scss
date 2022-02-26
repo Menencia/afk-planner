@@ -1,9 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/uikit/dist/css/uikit.min.css";
-
-@import url('https://fonts.googleapis.com/css?family=Averia+Sans+Libre&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  font-family: 'Averia Sans Libre', cursive;
+  @apply dark:bg-gray-800 bg-gray-200 dark:text-white;
+}
+
+nav {
+  a, a:visited {
+    @apply text-xl text-gray-400 uppercase;
+
+    &:hover {
+      @apply text-gray-700 dark:text-red-400;
+    }
+
+    &.active {
+      @apply text-black dark:text-white;
+    }
+  }
+}
+
+.ui-label {
+  @apply block text-gray-600 text-sm font-bold mb-2;
+}
+.ui-input {
+  @apply border rounded w-full py-2 px-3 text-gray-600;
+}
+.ui-button {
+  @apply bg-blue-100 px-4 py-2 text-lg font-semibold tracking-wider text-blue-600 rounded;
+  @apply hover:bg-blue-200;
+  @apply focus:outline-none focus:ring-0;
+
+  &.disabled {
+    @apply text-gray-400;
+    @apply hover:bg-blue-100;
+  }
 }

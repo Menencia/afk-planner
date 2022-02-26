@@ -3,29 +3,27 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap, map, take } from 'rxjs/operators';
 
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Auth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, authState } from '@angular/fire/auth';
+import { doc, docData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 
-import { User, UserSave } from '../models/user';
-
-import * as moment from 'moment';
+import { User as UserM, UserSave } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user$: Observable<UserSave | undefined>;
+  user$: Observable<any | undefined>;
 
   constructor(
-    public afAuth: AngularFireAuth,
-    public afs: AngularFirestore,
+    public afAuth: Auth,
+    public firestore: Firestore,
     public router: Router,
   ) {
-    this.user$ = this.afAuth.authState.pipe(
+    this.user$ = authState(this.afAuth).pipe(
       switchMap((user) => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return docData(doc(this.firestore, `users/${user.uid}`));
         }
 
         return of(undefined);
@@ -34,61 +32,52 @@ export class AuthService {
   }
 
   async createAccount(name: string, email: string, password: string): Promise<void> {
-    const credentials = await this.afAuth.createUserWithEmailAndPassword(email, password)
+    const credentials = await createUserWithEmailAndPassword(this.afAuth, email, password)
     this.createUser(credentials.user, name, email);
   }
 
   async loginWithPassword(email: string, password: string): Promise<void> {
-    const credentials = await this.afAuth.signInWithEmailAndPassword(email, password)
+    const credentials = await signInWithEmailAndPassword(this.afAuth, email, password)
     this.updateUser(credentials.user);
   }
 
-  logout(): void {
-    this.afAuth.signOut();
+  async logout(): Promise<void> {
+    await signOut(this.afAuth);
   }
 
   private createUser(user: any, name: string, email: string) {
-    const userRef = this.afs.doc(`users/${user.uid}`);
+    const userRef = doc(this.firestore, `users/${user.uid}`);
 
     const userObj = {
       uid: user.uid,
       name,
       email,
-      lastConnected: moment().toDate()
+      lastConnected: new Date()
     };
 
-    return userRef.set(userObj, { merge: true });
+    return setDoc(userRef, userObj, { merge: true });
   }
 
   private updateUser(user: any): Promise<void> {
-    const userRef = this.afs.doc<User>(`users/${user.uid}`);
+    const userRef = doc(this.firestore, `users/${user.uid}`);
 
     const userObj = {
-      lastConnected: moment().toDate()
+      lastConnected: new Date()
     };
 
-    return userRef.update(userObj);
+    return updateDoc(userRef, userObj);
   }
 
-  getUser(): Promise<User | undefined> {
+  getUser(): Promise<UserM | undefined> {
     return this.user$.pipe(
       take(1),
       map(data => {
         if (data) {
-          return new User().load(data);
+          return new UserM().load(data);
         }
 
         return undefined;
       })
     ).toPromise();
-  }
-
-  saveUser(userSubset: User) {
-    this.getUser().then(user => {
-      if (user) {
-        const userRef = this.afs.doc<User>(`users/${user.uid}`);
-        userRef.update(userSubset);
-      }
-    });
   }
 }

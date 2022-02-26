@@ -1,13 +1,13 @@
-<h2 class="uk-heading-divider">Se connecter</h2>
-<div class="uk-grid-divider" uk-grid>
-  <div class="uk-width-1-2@m">
-    <form class="uk-form-horizontal" #signin="ngForm">
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
+<h2 class="text-3xl font-bold mb-4">Login</h2>
+<div>
+  <div>
+    <form #signin="ngForm">
+      <div class="mb-4">
+        <div class="ui-label">
           Email
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="signinEmail"
             name="signinEmail"
             type="text"
@@ -16,12 +16,12 @@
             required>
         </div>
       </div>
-      <div class="uk-margin">
-        <div class="uk-form-label uk-text-bold">
+      <div class="mb-4">
+        <div class="ui-label">
           Mot de passe
         </div>
         <div class="uk-form-controls">
-          <input class="uk-input"
+          <input class="ui-input"
             id="signinPassword"
             name="signinPassword"
             type="password"
@@ -30,13 +30,13 @@
             required>
         </div>
       </div>
-      <button class="uk-button uk-button-primary uk-align-right"
+      <button class="ui-button"
         [disabled]="!signin.form.valid"
         (click)="loginWithPassword()">Valider</button>
     </form>
   </div>
 
-  <div class="uk-width-1-2@m">
-
+  <div *ngIf="status !== ''">
+    {{status}}
   </div>
 </div>

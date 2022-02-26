@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Firestore, collectionData, collection, doc, setDoc } from '@angular/fire/firestore';
 import { AuthService } from "../services/auth.service";
 import { Hero } from "./hero";
-import { firstValueFrom } from 'rxjs';
-import { map } from "@firebase/util";
+import { firstValueFrom, Observable } from 'rxjs';
+import { addDoc } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,16 @@ import { map } from "@firebase/util";
 export class DataService {
 
   constructor(
-    public afs: AngularFirestore,
+    public firestore: Firestore,
     public auth: AuthService
   ) { }
 
   async getHeroes(): Promise<Partial<Hero>[]> {
     const user = await this.auth.getUser().then();
     if (user) {
-      const heroes$ = this.afs.collection<Partial<Hero>>(`users/${user.uid}/heroes`)
-        .valueChanges({idField: 'uid'});
-      const heroes = await firstValueFrom(heroes$)
+      const ref = collection(this.firestore, `users/${user.uid}/heroes`);
+      const heroes$: Observable<Partial<Hero>[]> = collectionData(ref);
+      const heroes = await firstValueFrom(heroes$);
       return heroes;
     }
     return Promise.resolve([]);
@@ -31,9 +31,9 @@ export class DataService {
     const user = await this.auth.getUser();
     if (heroSave && user) {
       if (hero.uid) {
-        this.afs.doc<Partial<Hero>>(`users/${user.uid}/heroes/${hero.uid}`).set(heroSave);
+        setDoc(doc(this.firestore, `users/${user.uid}/heroes/${hero.uid}`), heroSave);
       } else {
-        this.afs.collection<Partial<Hero>>(`users/${user.uid}/heroes`).add(heroSave)
+        addDoc(collection(this.firestore, `users/${user.uid}/heroes`), heroSave)
           .then(docRef => {
             hero.uid = docRef.id;
           });

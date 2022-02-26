@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './models/user';
 import { AuthService } from './services/auth.service';
+
+enum Theme {
+  Light = 'light',
+  Dark = 'dark',
+}
 
 @Component({
   selector: 'app-root',
@@ -10,12 +16,36 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   user: User | undefined;
+  theme: string;
 
   constructor(
     public auth: AuthService,
-    public router: Router
+    public router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.user = undefined;
+  
+    // default theme
+    const theme = localStorage.getItem('theme') as Theme;
+    this.theme = theme ? theme: Theme.Light;
+    this.applyTheme();
+  }
+
+  toggleDark() {
+    this.theme = this.theme === Theme.Light ? Theme.Dark : Theme.Light;
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    localStorage.setItem('theme', this.theme);
+    const htmlNode = this.document.querySelector('html');
+    if (htmlNode) {
+      if (this.theme === Theme.Dark) {
+        htmlNode.classList.add('dark')
+      } else {
+        htmlNode.classList.remove('dark')
+      }
+    }
   }
 
   ngOnInit() {

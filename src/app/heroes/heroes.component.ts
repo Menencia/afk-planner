@@ -16,6 +16,8 @@ export class HeroesComponent implements OnInit {
   currentHero: Hero | null = null;
   factions: Faction[];
   currentFilter: Faction | null = null;
+  displayEditModal = false;
+  displayFilterModal = false;
 
   constructor(
     public accountService: AccountService,
@@ -54,6 +56,16 @@ export class HeroesComponent implements OnInit {
 
   editHero(hero: Hero) {
     this.currentHero = hero;
+    this.displayEditModal = true;
+  }
+
+  filter() {
+    this.displayFilterModal = true;
+  }
+
+  closeModal() {
+    this.displayEditModal = false;
+    this.displayFilterModal = false;
   }
 
   closeHero(): void {
@@ -62,6 +74,13 @@ export class HeroesComponent implements OnInit {
 
   saveHero(hero: Hero) {
     this.dataService.saveHero(hero);
+  }
+
+  onBlur(event: any) {
+    if (event.target.classList.value.includes('modal')) {
+      this.displayEditModal = false;
+      this.displayFilterModal = false;
+    }
   }
 
 }

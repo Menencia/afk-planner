@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   values: any;
+  status: string = '';
 
   constructor(
     public auth: AuthService,
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/heroes');
       })
       .catch(error => {
-        Utils.notify(error.message, Status.Danger);
+        this.status = error.message;
       });
   }
 

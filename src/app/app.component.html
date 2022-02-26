@@ -1,41 +1,44 @@
-<nav class="uk-navbar-container uk-margin" uk-navbar>
-  <div class="uk-navbar-brand">
-    <a href="#" routerLink="/home" id="logo" class="uk-navbar-item uk-logo">
-      <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
-      AFK/PLANNER
-    </a>
+<nav class="flex items-center gap-5 p-3 bg-gray-200 dark:bg-gray-800 dark:text-white" id="step10">
+  <div class="text-red-500 tracking-wider text-2xl">
+    AFK/planner
   </div>
-  <div class="uk-navbar-right toggle-target collapsed">
-    <ul class="uk-navbar-nav">
 
-      <ng-container *ngIf="user; else showLogin">
-        <li class="uk-navbar-item">
-          <a href="#" (click)="logout()">
-            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
-            Déconnexion
-          </a>
-        </li>
-      </ng-container>
+  <ng-container *ngIf="user; else showLogin">
+    <a routerLink="/heroes" routerLinkActive="active">
+      Heroes
+    </a>
+    <a href="#" (click)="logout()">
+      logout
+    </a>
+  </ng-container>
 
-      <ng-template #showLogin>
-        <li class="uk-navbar-item">
-          <a href="#" routerLink="/signup">
-            <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
-            S'inscrire
-          </a>
-        </li>
-        <li class="uk-navbar-item">
-          <a href="#" routerLink="/login">
-            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
-            Se connecter
-          </a>
-        </li>
-      </ng-template>
+  <ng-template #showLogin>
+    <a routerLink="/home" routerLinkActive="active">
+      home
+    </a>
+    <a routerLink="/signup" routerLinkActive="active">
+      signup
+    </a>
+    <a routerLink="/login" routerLinkActive="active">
+      login
+    </a>
+  </ng-template>
 
-    </ul>
+  <div class="flex-grow"></div>
+  <div>
+    <div class="cursor-pointer" (click)="toggleDark()">
+      <span *ngIf="theme === 'light'" class="material-icons-outlined">
+        light_mode
+      </span>
+      <span *ngIf="theme === 'dark'" class="material-icons-outlined">
+        dark_mode
+      </span>
+    </div>
   </div>
 </nav>
 
-<div class="uk-container">
-  <router-outlet></router-outlet>
+<div class="bg-white dark:bg-gray-800 py-5">
+  <div class="container mx-auto ">
+    <router-outlet></router-outlet>
+  </div>
 </div>

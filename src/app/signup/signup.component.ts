@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { Status, Utils } from '../models/utils';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -12,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class SignupComponent implements OnInit {
 
   values: any;
+  status: string = '';
 
   constructor(
     public auth: AuthService,
@@ -37,11 +37,11 @@ export class SignupComponent implements OnInit {
     // checkings
     let check = true;
     if (!name || !/^[a-zA-Z0-9]+$/.test(name)) {
-      Utils.notify('Le pseudo est obligatoire (caractères autorisés: a-z, A-Z, 0-9).', Status.Danger);
+      this.status = 'Le pseudo est obligatoire (caractères autorisés: a-z, A-Z, 0-9).';
       check = false;
     }
     if (password !== passwordRepeat) {
-      Utils.notify('Les mots de passe ne correspondent pas.', Status.Danger);
+      this.status = 'Les mots de passe ne correspondent pas.';
       check = false;
     }
 
@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
       this.auth.createAccount(name, email, password)
         .then(() => {
           this.resetValues();
-          Utils.notify('Votre compte a créé avec succès.');
+          this.status = 'Votre compte a créé avec succès.';
           this.auth.loginWithPassword(email, password)
             .then(() => {
               this.auth.user$.subscribe(data => {
@@ -60,11 +60,11 @@ export class SignupComponent implements OnInit {
               });
             })
             .catch(error => {
-              Utils.notify(error.message, Status.Danger);
+              this.status = error.message;
             });
         })
         .catch(error => {
-          Utils.notify(error.message, Status.Danger);
+          this.status = error.message;
         });
     }
   }
