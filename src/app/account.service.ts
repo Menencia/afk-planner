@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { DataService } from './models/data.service';
-import { Hero, HeroSave } from './models/hero';
-import { initHeroes } from './models/hero-loader';
+import { Hero } from './models/hero';
 import { PrioritySi } from './models/priorities/priority-si';
 import { Save } from './models/save';
 import { AuthService } from './services/auth.service';
@@ -12,57 +13,35 @@ import { AuthService } from './services/auth.service';
 export class AccountService {
 
   heroes: Hero[] = [];
-  si: PrioritySi[];
+  si: PrioritySi[] = [];
 
   constructor(
     public auth: AuthService,
-    public dataService: DataService
-  ) {
-    this.heroes = initHeroes();
-    this.si = [];
+    public dataService: DataService,
+    public http: HttpClient
+  ) { }
 
-    this.run();
-  }
+  async getHeroes(): Promise<Hero[]> {
+    const heroes$ = this.http.get('assets/heroes.json');
+    const heroes = await firstValueFrom(heroes$) as Partial<Hero>[];
+    this.heroes = heroes.map((heroSave: Partial<Hero>) => {
+      return new Hero().load(heroSave);
+    });
 
-  async run(): Promise<void> {
-    // search for save
+    // build save
     let save: Save = {heroes: []};
     save.heroes = await this.dataService.getHeroes();
+    console.log(save.heroes)
 
     // load save
-    if (save) {
-      this.load(save);
-    }
-  }
-
-  load(save: Save): void {
-    save.heroes.forEach((heroSave: HeroSave) => {
-      const found = this.heroes.find(hero => hero.name === heroSave.name);
-      if (found) {
-        found.load(heroSave);
+    save.heroes.forEach((heroSave: Partial<Hero>) => {
+      const hero = this.heroes.find(h => h.name === heroSave.name);
+      if (hero) {
+        hero.load(heroSave);
       }
     });
-  }
 
-  getHero(name: string): Hero {
-    const hero = this.heroes.find(h => h.name = name)
-    if (hero) {
-      return hero;
-    }
-    throw new Error('Hero not found');
-  }
-
-  export(): Save {
-    return {
-      heroes: this.exportHeroes()
-    };
-  }
-
-  exportHeroes(): HeroSave[] {
-    const res: HeroSave[] = [];
-    this.heroes.forEach(hero => {
-      res.push(hero.export());
-    });
-    return res;
+    // mark as ready
+    return this.heroes;
   }
 }

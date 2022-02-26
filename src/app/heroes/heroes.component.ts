@@ -12,18 +12,20 @@ import { Hero } from '../models/hero';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[] = [];
-  currentHero: Hero | null;
+  currentHero: Hero | null = null;
 
   constructor(
     public accountService: AccountService,
     public dataService: DataService,
     public router: Router
-  ) {
-    this.heroes = this.accountService.heroes;
-    this.currentHero = null;
-  }
+  ) { }
 
   ngOnInit() {
+    this.getHeroes();
+  }
+
+  async getHeroes() {
+    this.heroes = await this.accountService.getHeroes();
   }
 
   editHero(hero: Hero) {

@@ -22,6 +22,10 @@ export enum Classe {
   Support
 }
 
+export enum Role {
+  Buffer
+}
+
 export enum Ascension {
   Elite,
   ElitePlus,
@@ -37,50 +41,26 @@ export enum Ascension {
   Ascended5
 };
 
-export interface HeroSave {
-  uid: string;
-  name: string;
-  ascension: Ascension;
-  siEnabled: boolean;
-  si: number;
-  fi: number;
-  engraving: number;
-  equipment: number;
-}
+export class Hero {
 
-export abstract class Hero {
+  id: number = 0;
+  uid: string = '';
+  name: string = '';
+  faction = Faction.Celestial;
+  type = Type.Agility;
+  classe = Classe.Mage;
+  role = Role.Buffer
+  ascension = Ascension.Elite;
+  siEnabled = false;
+  si = 0;
+  fi = 0;
+  engraving = 0;
+  equipment = 0;
 
-  uid: string;
-  abstract name: string;
-  abstract faction: Faction;
-  abstract type: Type;
-  abstract classe: Classe;
-  ascension: Ascension;
-  siEnabled: boolean;
-  si: number;
-  fi: number;
-  engraving: number;
-  equipment: number;
+  constructor() { }
 
-  constructor() {
-    this.uid = '';
-    this.ascension = Ascension.Elite;
-    this.siEnabled = false;
-    this.si = 0;
-    this.fi = 0;
-    this.engraving = 0;
-    this.equipment = 0;
-  }
-
-  load(data: HeroSave): Hero {
-    this.uid = data.uid;
-    this.name = data.name;
-    this.ascension = data.ascension;
-    this.siEnabled = data.siEnabled;
-    this.si = data.si;
-    this.fi = data.fi;
-    this.engraving = data.engraving;
-    this.equipment = data.equipment;
+  load(data: Partial<Hero>): Hero {
+    Object.assign(this, data);
     return this;
   }
 
@@ -96,9 +76,30 @@ export abstract class Hero {
     return this.ascension > Ascension.Ascended1;
   }
 
-  export(): HeroSave {
-    const {uid, name, ascension, siEnabled, si, fi, engraving, equipment} = this;
-    return {uid, name, ascension, siEnabled, si, fi, engraving, equipment};
+  export(): Partial<Hero> | undefined {
+    const res: Partial<Hero> = {};
+
+    if (this.ascension > Ascension.Elite) {
+      res.ascension = this.ascension;
+    }
+
+    if (this.si > 0) {
+      res.si = this.si;
+    }
+
+    if (this.fi > 0) {
+      res.fi = this.fi;
+    }
+
+    if (this.engraving > 0) {
+      res.engraving = this.engraving;
+    }
+
+    if (Object.keys(res).length > 0) {
+      res.name = this.name;
+      return res;
+    }
+    return undefined;
   }
 
 }

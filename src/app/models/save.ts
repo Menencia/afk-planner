@@ -1,5 +1,5 @@
-import { HeroSave } from "./hero";
+import { Hero } from "./hero";
 
 export interface Save {
-  heroes: HeroSave[];
+  heroes: Partial<Hero>[];
 }

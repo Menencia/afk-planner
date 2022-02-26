@@ -1,0 +1,18 @@
+[
+  {
+    "id": 17,
+    "name": "Lucius",
+    "type": "strength",
+    "class": "tank",
+    "role": "regen",
+    "faction": "lightbearers"
+  },
+  {
+    "id": 34,
+    "name": "Rowan",
+    "type": "intelligence",
+    "class": "support",
+    "role": "buffer",
+    "faction": "lightbearers"
+  }
+]
