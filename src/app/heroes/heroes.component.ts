@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { DataService } from '../models/data.service';
-import { Faction, Hero } from '../models/hero';
+import { Ascension, Faction, Hero } from '../models/hero';
 
 @Component({
   selector: 'app-heroes',
@@ -18,6 +18,7 @@ export class HeroesComponent implements OnInit {
   currentFilter: Faction | null = null;
   displayEditModal = false;
   displayFilterModal = false;
+  ascendList: Ascension[];
 
   constructor(
     public accountService: AccountService,
@@ -32,7 +33,21 @@ export class HeroesComponent implements OnInit {
       Faction.Celestial,
       Faction.Hypogean,
       Faction.Dimensional
-    ]; 
+    ];
+    this.ascendList = [
+      Ascension.Elite,
+      Ascension.ElitePlus,
+      Ascension.Legendary,
+      Ascension.LegendaryPlus,
+      Ascension.Mythic,
+      Ascension.MythicPlus,
+      Ascension.Ascended,
+      Ascension.Ascended1,
+      Ascension.Ascended2,
+      Ascension.Ascended3,
+      Ascension.Ascended4,
+      Ascension.Ascended5
+    ];
   }
 
   ngOnInit() {

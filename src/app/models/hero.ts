@@ -58,11 +58,11 @@ export class Hero {
   type = Type.Agility;
   classe = Classe.Mage;
   role = Role.Buffer
-  ascension = Ascension.Elite;
+  ascend = Ascension.Elite;
   siEnabled = false;
   si = 0;
   fi = 0;
-  engraving = 0;
+  engrave = 0;
   equipment = 0;
 
   constructor() { }
@@ -80,22 +80,22 @@ export class Hero {
   }
 
   hasSI(): boolean {
-    return this.ascension > Ascension.Mythic && this.siEnabled;
+    return this.ascend > Ascension.Mythic && this.siEnabled;
   }
 
   hasFI(): boolean {
-    return this.ascension > Ascension.Ascended;
+    return this.ascend > Ascension.Ascended;
   }
 
-  hasEngraving(): boolean {
-    return this.ascension > Ascension.Ascended1;
+  hasEngrave(): boolean {
+    return this.ascend > Ascension.Ascended1;
   }
 
   export(): Partial<Hero> | undefined {
     const res: Partial<Hero> = {};
 
-    if (this.ascension > Ascension.Elite) {
-      res.ascension = this.ascension;
+    if (this.ascend > Ascension.Elite) {
+      res.ascend = this.ascend;
     }
 
     if (this.si > 0) {
@@ -106,13 +106,12 @@ export class Hero {
       res.fi = this.fi;
     }
 
-    if (this.engraving > 0) {
-      res.engraving = this.engraving;
+    if (this.engrave > 0) {
+      res.engrave = this.engrave;
     }
 
     if (Object.keys(res).length > 0) {
       res.id = this.id;
-      res.name = this.name;
       return res;
     }
     return undefined;

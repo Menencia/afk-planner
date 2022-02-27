@@ -5,7 +5,7 @@
 
   <ng-container *ngIf="user; else showLogin">
     <a routerLink="/heroes" routerLinkActive="active">
-      Heroes
+      {{'Heroes' | translate}}
     </a>
     <a href="#" (click)="logout()">
       logout

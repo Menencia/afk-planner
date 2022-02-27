@@ -22,9 +22,10 @@
           class="py-2 cursor-pointer hover:bg-orange-200 hover:dark:bg-gray-600">
           <div class="flex flex-row">
             <div class="flex-1">{{hero.name}}</div>
+            <div class="flex-1">{{'ascend' + hero.ascend | translate}}</div>
             <div class="flex-1">SI: {{hero.si}}</div>
             <div class="flex-1">F: {{hero.fi}}</div>
-            <div class="flex-1">E: {{hero.engraving}}</div>
+            <div class="flex-1">E: {{hero.engrave}}</div>
           </div>
       </li>
     </ul>
@@ -52,6 +53,12 @@
           </div>
           <div class="flex flex-col">
             <div class="mb-4">
+              <label class="ui-label">Ascend</label>
+              <select name="si" type="number" [(ngModel)]="currentHero.ascend" (blur)="saveHero(currentHero)" class="ui-select">
+                <option *ngFor="let a of ascendList" [ngValue]="a">{{'ascend' + a | translate}}</option>
+              </select>
+            </div>
+            <div class="mb-4">
               <label class="ui-label">SI</label>
               <input name="si" type="number" [(ngModel)]="currentHero.si" (blur)="saveHero(currentHero)" class="ui-input" />
             </div>
@@ -60,8 +67,8 @@
               <input name="si" type="number" [(ngModel)]="currentHero.fi" (blur)="saveHero(currentHero)" class="ui-input" />
             </div>
             <div class="mb-4">
-              <label class="ui-label">Engraving</label>
-              <input name="si" type="number" [(ngModel)]="currentHero.engraving" (blur)="saveHero(currentHero)" class="ui-input" />
+              <label class="ui-label">Engrave</label>
+              <input name="si" type="number" [(ngModel)]="currentHero.engrave" (blur)="saveHero(currentHero)" class="ui-input" />
             </div>
           </div>
         </div>

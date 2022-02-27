@@ -34,7 +34,7 @@ export class AccountService {
 
     // load save
     save.heroes.forEach((heroSave: Partial<Hero>) => {
-      const hero = this.heroes.find(h => h.id === heroSave.id && h.name === heroSave.name);
+      const hero = this.heroes.find(h => h.id === heroSave.id);
       if (hero) {
         hero.load(heroSave);
       }
