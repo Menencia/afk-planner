@@ -57,17 +57,33 @@ export class HeroesComponent implements OnInit {
 
   async getHeroes() {
     this.heroes = await this.accountService.getHeroes();
-    this.filteredHeroes = this.heroes;
+    this.filteredHeroes = this.heroes
+      .sort(this.sortHeroes);
   }
 
   filterFaction(faction: Faction) {
     if (this.currentFilter !== faction) {
       this.currentFilter = faction;
-      this.filteredHeroes = this.heroes.filter(hero => hero.faction === faction);
+      this.filteredHeroes = this.heroes
+        .filter(hero => hero.faction === faction)
+        .sort(this.sortHeroes);
     } else {
       this.currentFilter = null;
-      this.filteredHeroes = this.heroes;
+      this.filteredHeroes = this.heroes
+        .sort(this.sortHeroes);
     }
+  }
+
+  sortHeroes(a: Hero, b: Hero) {
+    if (a.ascend > b.ascend) return -1;
+    if (a.ascend < b.ascend) return 1;
+    if (a.engrave > b.engrave) return -1;
+    if (a.engrave < b.engrave) return 1;
+    if (a.fi > b.fi) return -1;
+    if (a.fi < b.fi) return 1;
+    if (a.si > b.si) return -1;
+    if (a.si < b.si) return 1;
+    return 0;
   }
 
   editHero(hero: Hero) {
