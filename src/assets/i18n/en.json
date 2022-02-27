@@ -1,14 +1,15 @@
 {
-  "ascend0": "Elite",
-  "ascend1": "Elite+",
-  "ascend2": "Legendary",
-  "ascend3": "Legendary+",
-  "ascend4": "Mythic",
-  "ascend5": "Mythic+",
-  "ascend6": "Ascend",
-  "ascend7": "Ascend 1*",
-  "ascend8": "Ascend 2*",
-  "ascend9": "Ascend 3*",
-  "ascend10": "Ascend 4*",
-  "ascend11": "Ascend 5*"
+  "ascend0": "-",
+  "ascend1": "Elite",
+  "ascend2": "Elite+",
+  "ascend3": "Legendary",
+  "ascend4": "Legendary+",
+  "ascend5": "Mythic",
+  "ascend6": "Mythic+",
+  "ascend7": "Ascend",
+  "ascend8": "Ascend 1*",
+  "ascend9": "Ascend 2*",
+  "ascend10": "Ascend 3*",
+  "ascend11": "Ascend 4*",
+  "ascend12": "Ascend 5*"
 }

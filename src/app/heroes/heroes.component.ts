@@ -35,6 +35,7 @@ export class HeroesComponent implements OnInit {
       Faction.Dimensional
     ];
     this.ascendList = [
+      Ascension.NOT_ACQUIRED,
       Ascension.Elite,
       Ascension.ElitePlus,
       Ascension.Legendary,

@@ -54,7 +54,7 @@
           <div class="flex flex-col">
             <div class="mb-4">
               <label class="ui-label">Ascend</label>
-              <select name="si" type="number" [(ngModel)]="currentHero.ascend" (blur)="saveHero(currentHero)" class="ui-select">
+              <select name="si" type="number" [(ngModel)]="currentHero.ascend" (blur)="saveHero(currentHero)" class="ui-input">
                 <option *ngFor="let a of ascendList" [ngValue]="a">{{'ascend' + a | translate}}</option>
               </select>
             </div>

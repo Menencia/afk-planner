@@ -35,6 +35,7 @@ export enum Role {
 }
 
 export enum Ascension {
+  NOT_ACQUIRED,
   Elite,
   ElitePlus,
   Legendary,
