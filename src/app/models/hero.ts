@@ -59,7 +59,7 @@ export class Hero {
   type = Type.Agility;
   classe = Classe.Mage;
   role = Role.Buffer
-  ascend = Ascension.Elite;
+  ascend = Ascension.NOT_ACQUIRED;
   siEnabled = false;
   si = 0;
   fi = 0;
@@ -95,7 +95,7 @@ export class Hero {
   export(): Partial<Hero> | undefined {
     const res: Partial<Hero> = {};
 
-    if (this.ascend > Ascension.Elite) {
+    if (this.ascend > Ascension.NOT_ACQUIRED) {
       res.ascend = this.ascend;
     }
 
