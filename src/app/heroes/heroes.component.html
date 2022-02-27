@@ -23,9 +23,16 @@
           <div class="flex flex-row">
             <div class="flex-1">{{hero.name}}</div>
             <div class="flex-1">{{'ascend' + hero.ascend | translate}}</div>
-            <div class="flex-1">SI: {{hero.si}}</div>
-            <div class="flex-1">F: {{hero.fi}}</div>
-            <div class="flex-1">E: {{hero.engrave}}</div>
+            <div class="flex-1">
+              <span *ngIf="hero.si > 0 || hero.fi > 0">
+                {{hero.si}}{{hero.fi}}<span *ngIf="hero.engrave > 0">e{{hero.engrave}}</span>
+              </span>
+            </div>
+            <div class="flex-1">
+              <span *ngIf="hero.getGearNumber() > 0">
+                T3<span class="font-semibold">x{{hero.getGearNumber()}} </span>
+              </span>
+            </div>
           </div>
       </li>
     </ul>
@@ -69,6 +76,29 @@
             <div class="mb-4">
               <label class="ui-label">Engrave</label>
               <input name="si" type="number" [(ngModel)]="currentHero.engrave" (blur)="saveHero(currentHero)" class="ui-input" />
+            </div>
+            <div class="mb-4">
+              <label class="ui-label">Gear (T3)</label>
+              <img [src]="'assets/gear/' + currentHero.type + '/hand.jpg'" 
+                   class="gear"
+                   [class.active]="currentHero.gearHand"
+                   (click)="toggleGearHand(currentHero)" />
+              <img [src]="'assets/gear/' + currentHero.type + '/head.jpg'" 
+                   class="gear"
+                   [class.active]="currentHero.gearHead"
+                   (click)="toggleGearHead(currentHero)" />
+              <img [src]="'assets/gear/' + currentHero.type + '/body.jpg'" 
+                   class="gear"
+                   [class.active]="currentHero.gearBody"
+                   (click)="toggleGearBody(currentHero)" />
+              <img [src]="'assets/gear/' + currentHero.type + '/foot.jpg'" 
+                   class="gear"
+                   [class.active]="currentHero.gearFoot"
+                   (click)="toggleGearFoot(currentHero)" />
+            </div>
+            <div class="mb-4">
+              <label class="ui-label">RC</label>
+              <input name="si" type="checkbox" [(ngModel)]="currentHero.rc" (change)="saveHero(currentHero)" />
             </div>
           </div>
         </div>

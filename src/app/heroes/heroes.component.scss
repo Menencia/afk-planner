@@ -1,0 +1,7 @@
+.gear {
+    @apply opacity-30 cursor-pointer inline-block w-10;
+
+    &.active {
+        @apply opacity-100;
+    }
+}

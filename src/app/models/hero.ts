@@ -64,7 +64,11 @@ export class Hero {
   si = 0;
   fi = 0;
   engrave = 0;
-  equipment = 0;
+  gearHand = false;
+  gearHead = false;
+  gearBody = false;
+  gearFoot = false;
+  rc = false;
 
   constructor() { }
 
@@ -78,6 +82,15 @@ export class Hero {
                      .toLocaleLowerCase()
                      .replace(/ /g, '-');
     return 'assets/heroes/' + this.id + '-' + name + '.jpg';
+  }
+
+  getGearNumber(): number {
+    let res = 0;
+    if (this.gearHand) res ++;
+    if (this.gearHead) res ++;
+    if (this.gearBody) res ++;
+    if (this.gearFoot) res ++;
+    return res;
   }
 
   hasSI(): boolean {
@@ -110,6 +123,15 @@ export class Hero {
     if (this.engrave > 0) {
       res.engrave = this.engrave;
     }
+
+    if (this.rc) {
+      res.rc = true;
+    }
+
+    if (this.gearHand) res.gearHand = true;
+    if (this.gearHead) res.gearHead = true;
+    if (this.gearBody) res.gearBody = true;
+    if (this.gearFoot) res.gearFoot = true;
 
     if (Object.keys(res).length > 0) {
       res.id = this.id;

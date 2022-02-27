@@ -92,6 +92,26 @@ export class HeroesComponent implements OnInit {
     this.dataService.saveHero(hero);
   }
 
+  toggleGearHand(hero: Hero) {
+    hero.gearHand = !hero.gearHand;
+    this.saveHero(hero);
+  }
+
+  toggleGearHead(hero: Hero) {
+    hero.gearHead = !hero.gearHead;
+    this.saveHero(hero);
+  }
+
+  toggleGearBody(hero: Hero) {
+    hero.gearBody = !hero.gearBody;
+    this.saveHero(hero);
+  }
+
+  toggleGearFoot(hero: Hero) {
+    hero.gearFoot = !hero.gearFoot;
+    this.saveHero(hero);
+  }
+
   onBlur(event: any) {
     if (event.target.classList.value.includes('modal')) {
       this.displayEditModal = false;
