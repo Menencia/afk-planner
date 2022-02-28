@@ -1,7 +1,9 @@
 <div class="flex">
   <div class="flex-1">
     <h1 class="text-3xl font-bold">
-      Heroes ({{filteredHeroes.length}})
+      Heroes <span class="bg-gray-500 rounded text-sm mr-2 px-2.5 py-0.5 align-middle	text-white">
+        {{nbrHeroes}}/{{filteredHeroes.length}}
+      </span>
     </h1>
   </div>
 
@@ -25,12 +27,17 @@
             <div class="flex-1">{{'ascend' + hero.ascend | translate}}</div>
             <div class="flex-1">
               <span *ngIf="hero.si > 0 || hero.fi > 0">
-                {{hero.si}}{{hero.fi}}<span *ngIf="hero.engrave > 0">e{{hero.engrave}}</span>
+                {{hero.getSiFi()}}<span *ngIf="hero.engrave > 0">e{{hero.engrave}}</span>
               </span>
             </div>
             <div class="flex-1">
               <span *ngIf="hero.getGearNumber() > 0">
                 T3<span class="font-semibold">x{{hero.getGearNumber()}} </span>
+              </span>
+            </div>
+            <div class="flex-1">
+              <span *ngIf="hero.showLvl()">
+                lvl1
               </span>
             </div>
           </div>

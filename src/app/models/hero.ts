@@ -93,6 +93,16 @@ export class Hero {
     return res;
   }
 
+  getSiFi(): string {
+    let si = this.si + '';
+    if (si.length === 1) si = '0' + si;
+    return si+this.fi;
+  }
+
+  showLvl(): boolean {
+  return this.ascend > Ascension.NOT_ACQUIRED && !this.rc;
+  }
+
   hasSI(): boolean {
     return this.ascend > Ascension.Mythic && this.siEnabled;
   }
