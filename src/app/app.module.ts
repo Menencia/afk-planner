@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { PrioritiesComponent } from './priorities/priorities.component';
+import { HeroImageComponent } from './hero-image/hero-image.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -27,7 +29,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HeroesComponent,
     SignupComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PrioritiesComponent,
+    HeroImageComponent
   ],
   imports: [
     BrowserModule,

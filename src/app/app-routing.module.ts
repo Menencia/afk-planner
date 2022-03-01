@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PrioritiesComponent } from './priorities/priorities.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'heroes', component: HeroesComponent},
+  {path: 'priorities', component: PrioritiesComponent},
   {path: '**', redirectTo: 'home'}
 ];
 

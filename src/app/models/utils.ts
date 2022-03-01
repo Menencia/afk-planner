@@ -16,4 +16,17 @@ export class Utils {
     });*/
   }
 
+  static loadImage(src: string): Promise<HTMLImageElement | undefined> {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.src = src;
+      image.onload = () => {
+        resolve(image);
+      };
+      image.onerror = () => {
+        resolve(undefined);
+      }
+    });
+  }
+
 }

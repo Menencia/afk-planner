@@ -57,7 +57,7 @@
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <div class="p-10" *ngIf="currentHero">
           <div class="flex mb-5">
-            <img [src]="currentHero.getImage()" />
+            <app-hero-image [hero]="currentHero"></app-hero-image>
             <p class="grow font-semibold">{{currentHero.name}}</p>
             <div>
               <span class="material-icons-outlined cursor-pointer" (click)="closeModal()">
