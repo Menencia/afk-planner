@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { createCanvas } from 'canvas';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Hero } from '../models/hero';
 import { Utils } from '../models/utils';
 
@@ -17,13 +17,14 @@ export class HeroImageComponent implements OnChanges {
   @Input() height = 64;
   @Input() hero: Hero | null = null;
 
-  heroImg = new BehaviorSubject<string>('');
+  heroImg = new Subject();
   
   constructor() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.heroImg = new BehaviorSubject<string>('');
+    console.log(changes)
+    this.heroImg = new Subject();
     this.draw();
   }
 
@@ -34,7 +35,6 @@ export class HeroImageComponent implements OnChanges {
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext("2d");
 
-    console.log(this.hero?.name)
     if (this.hero) {
 
       const [hero, fact, engrave, frame, si, fi, crown] = await Promise.all([

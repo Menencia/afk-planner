@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Subject } from 'rxjs';
 import { DataService } from './models/data.service';
 import { Hero } from './models/hero';
 import { PrioritySi } from './models/priorities/priority-si';
@@ -14,6 +14,7 @@ export class AccountService {
 
   heroes: Hero[] = [];
   si: PrioritySi[] = [];
+  isReady = new Subject();
 
   constructor(
     public auth: AuthService,
@@ -22,6 +23,10 @@ export class AccountService {
   ) { }
 
   async getHeroes(): Promise<Hero[]> {
+    if (this.heroes.length > 0) {
+      return this.heroes;
+    }
+
     const heroes$ = this.http.get('assets/heroes.json');
     const heroes = await firstValueFrom(heroes$) as Partial<Hero>[];
     this.heroes = heroes.map((heroSave: Partial<Hero>) => {
@@ -40,7 +45,6 @@ export class AccountService {
       }
     });
 
-    // mark as ready
     return this.heroes;
   }
 }

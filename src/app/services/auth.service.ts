@@ -6,7 +6,7 @@ import { switchMap, map, take } from 'rxjs/operators';
 import { Auth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, authState } from '@angular/fire/auth';
 import { doc, docData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 
-import { User as UserM, UserSave } from '../models/user';
+import { User as UserM } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +79,18 @@ export class AuthService {
         return undefined;
       })
     ).toPromise();
+  }
+
+  isSigned(): Observable<boolean> {
+    return this.user$.pipe(
+      take(1),
+      map(data => {
+        if (data) {
+          return true;
+        }
+
+        return false;
+      })
+    )
   }
 }
