@@ -11,3 +11,7 @@ export function getFactionList(): Faction[] {
     Faction.Dimensional,
   ];
 }
+
+export function getFactionIndex(faction: Faction): number {
+  return getFactionList().findIndex((e) => e === faction);
+}

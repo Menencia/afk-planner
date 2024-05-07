@@ -18,6 +18,6 @@ export function getAscendList(): Ascension[] {
   ];
 }
 
-export function getAscendPosition(ascend: Ascension): number {
+export function getAscendIndex(ascend: Ascension): number {
   return getAscendList().findIndex((e) => e === ascend);
 }

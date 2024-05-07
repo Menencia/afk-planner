@@ -44,14 +44,13 @@ export class Hero {
     return `assets/heroes/${this.id}-${name}.jpg`;
   }
 
-  getSiFi(): string {
-    let si = `${this.si}`;
-    if (si.length === 1) si = `0${si}`;
-    return si + this.fi;
-  }
-
-  showLvl(): boolean {
-    return this.ascend > Ascension.None && !this.rc;
+  isFull() {
+    return (
+      this.si >= 30 &&
+      this.fi >= 9 &&
+      this.engrave >= 60 &&
+      this.gear === Gear.T4All
+    );
   }
 
   hasSI(): boolean {
