@@ -30,7 +30,7 @@
       >
         <div class="flex flex-row">
           <div class="flex-1">{{ hero.name }}</div>
-          <div class="flex-1">{{ "ascend" + hero.ascend | translate }}</div>
+          <div class="flex-1">{{ "ascend." + hero.ascend | translate }}</div>
           <div class="flex-1">
             <span *ngIf="hero.si > 0 || hero.fi > 0">
               {{ hero.getSiFi()
@@ -38,8 +38,8 @@
             </span>
           </div>
           <div class="flex-1">
-            <span *ngIf="hero.getGearNumber() > 0">
-              T3<span class="font-semibold">x{{ hero.getGearNumber() }} </span>
+            <span class="font-semibold"
+              >{{ "gear." + hero.gear | translate }}
             </span>
           </div>
           <div class="flex-1">

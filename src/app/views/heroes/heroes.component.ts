@@ -3,8 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Ascension } from 'src/app/core/enums/ascension';
+import { Faction } from 'src/app/core/enums/faction';
+import { getAscendPosition } from 'src/app/core/utils/ascend.utils';
 
-import { Ascension, Faction, Hero } from '../../core/models/hero';
+import { Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
 
@@ -78,15 +81,15 @@ export class HeroesComponent implements OnInit {
 
   updateNbrHeroes() {
     this.nbrHeroes = this.filteredHeroes.filter(
-      (h) => h.ascend > Ascension.NOT_ACQUIRED,
+      (h) => h.ascend > Ascension.None,
     ).length;
   }
 
   sortHeroes(a: Hero, b: Hero) {
     if (a.rc && !b.rc) return -1;
     if (!a.rc && b.rc) return 1;
-    if (a.ascend > b.ascend) return -1;
-    if (a.ascend < b.ascend) return 1;
+    if (getAscendPosition(a.ascend) > getAscendPosition(b.ascend)) return -1;
+    if (getAscendPosition(a.ascend) < getAscendPosition(b.ascend)) return 1;
     if (a.engrave > b.engrave) return -1;
     if (a.engrave < b.engrave) return 1;
     if (a.si > b.si) return -1;

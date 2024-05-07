@@ -1,0 +1,15 @@
+export enum Ascension {
+  None = 'none',
+  Elite = 'elite',
+  ElitePlus = 'elite+',
+  Legendary = 'legendary',
+  LegendaryPlus = 'legendary+',
+  Mythic = 'mythic',
+  MythicPlus = 'mythic+',
+  Ascend = '0*',
+  Ascend1 = '1*',
+  Ascend2 = '2*',
+  Ascend3 = '3*',
+  Ascend4 = '4*',
+  Ascend5 = '5*',
+}

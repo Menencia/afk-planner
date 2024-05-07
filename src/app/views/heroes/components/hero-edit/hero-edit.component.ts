@@ -3,7 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
-import { Ascension, Hero } from 'src/app/core/models/hero';
+import { Ascension } from 'src/app/core/enums/ascension';
+import { Gear } from 'src/app/core/enums/gear';
+import { Hero } from 'src/app/core/models/hero';
+import { getAscendList } from 'src/app/core/utils/ascend.utils';
 
 @Component({
   selector: 'app-hero-edit',
@@ -21,20 +24,15 @@ export class HeroEditComponent {
 
   @Output() heroChange = new EventEmitter();
 
-  ascendList: Ascension[] = [
-    Ascension.NOT_ACQUIRED,
-    Ascension.Elite,
-    Ascension.ElitePlus,
-    Ascension.Legendary,
-    Ascension.LegendaryPlus,
-    Ascension.Mythic,
-    Ascension.MythicPlus,
-    Ascension.Ascended,
-    Ascension.Ascended1,
-    Ascension.Ascended2,
-    Ascension.Ascended3,
-    Ascension.Ascended4,
-    Ascension.Ascended5,
+  ascendList: Ascension[] = getAscendList();
+
+  gearList: Gear[] = [
+    Gear.None,
+    Gear.Custom,
+    Gear.Resonance,
+    Gear.T2All,
+    Gear.T3All,
+    Gear.T4All,
   ];
 
   saveHero() {

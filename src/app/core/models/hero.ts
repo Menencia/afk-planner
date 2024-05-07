@@ -1,54 +1,9 @@
-export enum Faction {
-  LightBearer = 'lightbearers',
-  Mauler = 'maulers',
-  Wilder = 'wilders',
-  Graveborn = 'graveborns',
-  Celestial = 'celestials',
-  Hypogean = 'hypogeans',
-  Dimensional = 'dimensionals',
-}
-
-export enum Type {
-  Strength,
-  Agility,
-  Intelligence,
-}
-
-export enum Classe {
-  Warrior,
-  Tank,
-  Ranger,
-  Mage,
-  Support,
-}
-
-export enum Role {
-  Tank,
-  Aoe,
-  Continuous,
-  Debuffer,
-  Control,
-  Buffer,
-  Burst,
-  Regen,
-  Assassin,
-}
-
-export enum Ascension {
-  NOT_ACQUIRED,
-  Elite,
-  ElitePlus,
-  Legendary,
-  LegendaryPlus,
-  Mythic,
-  MythicPlus,
-  Ascended,
-  Ascended1,
-  Ascended2,
-  Ascended3,
-  Ascended4,
-  Ascended5,
-}
+import { Ascension } from '../enums/ascension';
+import { Faction } from '../enums/faction';
+import { Gear } from '../enums/gear';
+import { Klass } from '../enums/klass';
+import { Role } from '../enums/role';
+import { Type } from '../enums/type';
 
 export class Hero {
   id: number = 0;
@@ -61,11 +16,11 @@ export class Hero {
 
   type = Type.Agility;
 
-  classe = Classe.Mage;
+  classe = Klass.Mage;
 
   role = Role.Buffer;
 
-  ascend = Ascension.NOT_ACQUIRED;
+  ascend = Ascension.None;
 
   siEnabled = false;
 
@@ -75,13 +30,7 @@ export class Hero {
 
   engrave = 0;
 
-  gearHand = false;
-
-  gearHead = false;
-
-  gearBody = false;
-
-  gearFoot = false;
+  gear = Gear.None;
 
   rc = false;
 
@@ -95,15 +44,6 @@ export class Hero {
     return `assets/heroes/${this.id}-${name}.jpg`;
   }
 
-  getGearNumber(): number {
-    let res = 0;
-    if (this.gearHand) res += 1;
-    if (this.gearHead) res += 1;
-    if (this.gearBody) res += 1;
-    if (this.gearFoot) res += 1;
-    return res;
-  }
-
   getSiFi(): string {
     let si = `${this.si}`;
     if (si.length === 1) si = `0${si}`;
@@ -111,7 +51,7 @@ export class Hero {
   }
 
   showLvl(): boolean {
-    return this.ascend > Ascension.NOT_ACQUIRED && !this.rc;
+    return this.ascend > Ascension.None && !this.rc;
   }
 
   hasSI(): boolean {
@@ -119,17 +59,17 @@ export class Hero {
   }
 
   hasFI(): boolean {
-    return this.ascend > Ascension.Ascended;
+    return this.ascend > Ascension.Ascend;
   }
 
   hasEngrave(): boolean {
-    return this.ascend > Ascension.Ascended1;
+    return this.ascend > Ascension.Ascend1;
   }
 
   export(): Partial<Hero> | undefined {
     const res: Partial<Hero> = {};
 
-    if (this.ascend > Ascension.NOT_ACQUIRED) {
+    if (this.ascend !== Ascension.None) {
       res.ascend = this.ascend;
     }
 
@@ -149,10 +89,9 @@ export class Hero {
       res.rc = true;
     }
 
-    if (this.gearHand) res.gearHand = true;
-    if (this.gearHead) res.gearHead = true;
-    if (this.gearBody) res.gearBody = true;
-    if (this.gearFoot) res.gearFoot = true;
+    if (this.gear !== Gear.None) {
+      res.gear = this.gear;
+    }
 
     if (Object.keys(res).length > 0) {
       res.id = this.id;

@@ -21,7 +21,7 @@
           class="ui-input"
         >
           <option *ngFor="let a of ascendList" [ngValue]="a">
-            {{ "ascend" + a | translate }}
+            {{ "ascend." + a | translate }}
           </option>
         </select>
       </div>
@@ -57,6 +57,21 @@
           (blur)="saveHero()"
           class="ui-input"
         />
+      </div>
+      <div class="mb-4">
+        <label class="ui-label" for="hero-gear">Gear</label>
+        <select
+          name="gear"
+          id="hero-gear"
+          type="number"
+          [(ngModel)]="hero.gear"
+          (blur)="saveHero()"
+          class="ui-input"
+        >
+          <option *ngFor="let a of gearList" [ngValue]="a">
+            {{ "gear." + a | translate }}
+          </option>
+        </select>
       </div>
       <div class="mb-4">
         <label class="ui-label" for="hero-rc">RC</label>
