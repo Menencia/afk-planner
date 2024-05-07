@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@layer tw-base, primeng, tw-components, tw-utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Please take note of the order in which these are imported
+@import "tailwindcss/base.css" layer(tw-base);
+@import "primeng/resources/primeng.min.css";
+@import "primeng/resources/themes/tailwind-light/theme.css";
+@import "primeicons/primeicons";
+@import "tailwindcss/components.css" layer(tw-components);
+@import "tailwindcss/utilities.css" layer(tw-utilities);
 
 body {
   @apply dark:bg-gray-800 bg-gray-200 dark:text-white;
