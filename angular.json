@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "afk-planner:build:production"
+              "buildTarget": "afk-planner:build:production"
             },
             "development": {
-              "browserTarget": "afk-planner:build:development"
+              "buildTarget": "afk-planner:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "afk-planner:build"
+            "buildTarget": "afk-planner:build"
           }
         },
         "test": {
@@ -110,6 +110,5 @@
         }
       }
     }
-  },
-  "defaultProject": "afk-planner"
+  }
 }

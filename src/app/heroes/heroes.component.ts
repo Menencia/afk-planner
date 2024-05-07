@@ -25,7 +25,7 @@ export class HeroesComponent implements OnInit {
   displayEditModal = false;
   displayFilterModal = false;
   ascendList: Ascension[];
-  mode: Mode = Mode.Standard;
+  mode: Mode = Mode.Detailed;
   Mode = Mode;
 
   constructor(
