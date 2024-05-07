@@ -1,0 +1,73 @@
+<p-dialog
+  header="Hero edit"
+  [modal]="true"
+  [visible]="visible"
+  (visibleChange)="visibleChange.emit($event)"
+  [style]="{ width: '25rem' }"
+>
+  <div class="p-10" *ngIf="hero">
+    <div class="flex mb-5">
+      <p class="font-semibold grow">{{ hero.name }}</p>
+    </div>
+    <div class="flex flex-col">
+      <div class="mb-4">
+        <label class="ui-label" for="hero-ascend">Ascend</label>
+        <select
+          name="ascend"
+          id="hero-ascend"
+          type="number"
+          [(ngModel)]="hero.ascend"
+          (blur)="saveHero()"
+          class="ui-input"
+        >
+          <option *ngFor="let a of ascendList" [ngValue]="a">
+            {{ "ascend" + a | translate }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="ui-label" for="hero-si">SI</label>
+        <input
+          name="si"
+          id="hero-si"
+          type="number"
+          [(ngModel)]="hero.si"
+          (blur)="saveHero()"
+          class="ui-input"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="ui-label" for="hero-fi">FI</label>
+        <input
+          name="fi"
+          id="hero-fi"
+          type="number"
+          [(ngModel)]="hero.fi"
+          (blur)="saveHero()"
+          class="ui-input"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="ui-label" for="hero-engrave">Engrave</label>
+        <input
+          name="engrave"
+          id="hero-engrave"
+          type="number"
+          [(ngModel)]="hero.engrave"
+          (blur)="saveHero()"
+          class="ui-input"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="ui-label" for="hero-rc">RC</label>
+        <input
+          name="rc"
+          id="hero-rc"
+          type="checkbox"
+          [(ngModel)]="hero.rc"
+          (change)="saveHero()"
+        />
+      </div>
+    </div>
+  </div>
+</p-dialog>

@@ -3,16 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { HeroImageComponent } from 'src/app/shared/components/hero-image/hero-image.component';
 
 import { Ascension, Faction, Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
 
+import { HeroEditComponent } from './components/hero-edit/hero-edit.component';
+
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf, TranslateModule, HeroImageComponent],
+  imports: [FormsModule, NgFor, NgIf, TranslateModule, HeroEditComponent],
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
 })
@@ -23,7 +24,7 @@ export class HeroesComponent implements OnInit {
 
   filteredHeroes: Hero[] = [];
 
-  currentHero: Hero | null = null;
+  currentHero?: Hero;
 
   factions: Faction[];
 
@@ -32,8 +33,6 @@ export class HeroesComponent implements OnInit {
   displayEditModal = false;
 
   displayFilterModal = false;
-
-  ascendList: Ascension[];
 
   constructor(
     public accountService: AccountService,
@@ -48,21 +47,6 @@ export class HeroesComponent implements OnInit {
       Faction.Celestial,
       Faction.Hypogean,
       Faction.Dimensional,
-    ];
-    this.ascendList = [
-      Ascension.NOT_ACQUIRED,
-      Ascension.Elite,
-      Ascension.ElitePlus,
-      Ascension.Legendary,
-      Ascension.LegendaryPlus,
-      Ascension.Mythic,
-      Ascension.MythicPlus,
-      Ascension.Ascended,
-      Ascension.Ascended1,
-      Ascension.Ascended2,
-      Ascension.Ascended3,
-      Ascension.Ascended4,
-      Ascension.Ascended5,
     ];
   }
 
@@ -121,43 +105,19 @@ export class HeroesComponent implements OnInit {
     this.displayFilterModal = true;
   }
 
-  closeModal() {
-    this.displayEditModal = false;
-    this.displayFilterModal = false;
-  }
-
   closeHero(): void {
-    this.currentHero = null;
+    this.currentHero = undefined;
   }
 
-  saveHero(hero: Hero) {
-    this.dataService.saveHero(hero);
-    this.updateNbrHeroes();
-  }
-
-  toggleGearHand(hero: Hero) {
-    hero.gearHand = !hero.gearHand;
-    this.saveHero(hero);
-  }
-
-  toggleGearHead(hero: Hero) {
-    hero.gearHead = !hero.gearHead;
-    this.saveHero(hero);
-  }
-
-  toggleGearBody(hero: Hero) {
-    hero.gearBody = !hero.gearBody;
-    this.saveHero(hero);
-  }
-
-  toggleGearFoot(hero: Hero) {
-    hero.gearFoot = !hero.gearFoot;
-    this.saveHero(hero);
+  saveHero() {
+    if (this.currentHero) {
+      this.dataService.saveHero(this.currentHero);
+      this.updateNbrHeroes();
+    }
   }
 
   onBlur(event: MouseEvent) {
     if ((event.target as Element).classList.value.includes('modal')) {
-      this.displayEditModal = false;
       this.displayFilterModal = false;
     }
   }

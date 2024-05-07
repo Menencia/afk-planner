@@ -3,6 +3,7 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth } from '@angular/fire/auth';
 import { provideFirestore } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
+    importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(
       provideFirebaseApp(() => initializeApp(firebaseConfig)),
     ),
