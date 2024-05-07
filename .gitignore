@@ -1,45 +1,27 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Compiled output
+# compiled output
 /dist
-/tmp
-/out-tsc
-/bazel-out
 
-# Node
+# dependencies
 /node_modules
-npm-debug.log
-yarn-error.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
+# IDE - VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
+# misc
 /.angular/cache
-.sass-cache/
-/connect.lock
 /coverage
-/libpeerconnection.log
-testem.log
-/typings
+/documentation
+npm-debug.log
 
-# System files
+# System Files
 .DS_Store
 Thumbs.db
 
-# firebase
+# Others
 firebase.ts
