@@ -1,5 +1,9 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { HeroImageComponent } from 'src/app/shared/components/hero-image/hero-image.component';
 import { Ascension, Faction, Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
@@ -11,6 +15,8 @@ enum Mode {
 
 @Component({
   selector: 'app-heroes',
+  standalone: true,
+  imports: [FormsModule, NgFor, NgIf, TranslateModule, HeroImageComponent],
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss']
 })

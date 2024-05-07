@@ -1,9 +1,12 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Hero } from '../../../core/models/hero';
 
 @Component({
   selector: 'app-hero-image',
+  standalone: true,
+  imports: [NgIf, AsyncPipe],
   templateUrl: './hero-image.component.html',
   styleUrls: ['./hero-image.component.scss']
 })

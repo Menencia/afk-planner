@@ -1,6 +1,7 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgIf } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { User } from './core/models/user';
 import { AuthService } from './core/services/auth.service';
 
@@ -11,6 +12,8 @@ enum Theme {
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, TranslateModule, NgIf, RouterLink],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
