@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Subject } from 'rxjs';
-import { DataService } from './models/data.service';
-import { Hero } from './models/hero';
-import { PrioritySi } from './models/priorities/priority-si';
-import { Save } from './models/save';
-import { AuthService } from './services/auth.service';
+import { Hero } from '../models/hero';
+import { PrioritySi } from '../models/priorities/priority-si';
+import { Save } from '../models/save';
+import { AuthService } from './auth.service';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'

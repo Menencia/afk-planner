@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from '../account.service';
-import { DataService } from '../models/data.service';
-import { Ascension, Faction, Hero } from '../models/hero';
+import { Ascension, Faction, Hero } from '../../core/models/hero';
+import { AccountService } from '../../core/services/account.service';
+import { DataService } from '../../core/services/data.service';
 
 enum Mode {
   Standard,

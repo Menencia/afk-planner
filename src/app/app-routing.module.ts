@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HomeComponent } from './home/home.component';
-import { IsSignedGuard } from './is-signed.guard';
-import { LoginComponent } from './login/login.component';
-import { PrioritiesComponent } from './priorities/priorities.component';
-import { SignupComponent } from './signup/signup.component';
+import { IsSignedGuard } from './core/guards/is-signed.guard';
+import { HeroesComponent } from './views/heroes/heroes.component';
+import { HomeComponent } from './views/home/home.component';
+import { LoginComponent } from './views/login/login.component';
+import { PrioritiesComponent } from './views/priorities/priorities.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},

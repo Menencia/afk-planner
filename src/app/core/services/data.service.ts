@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Firestore, collectionData, collection, doc, setDoc } from '@angular/fire/firestore';
-import { AuthService } from "../services/auth.service";
-import { Hero } from "./hero";
-import { firstValueFrom, Observable } from 'rxjs';
+import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
 import { addDoc } from "firebase/firestore";
+import { Observable, firstValueFrom } from 'rxjs';
+import { Hero } from "../models/hero";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: 'root'

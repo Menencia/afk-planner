@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap, map, take } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 
-import { Auth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, authState } from '@angular/fire/auth';
-import { doc, docData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Firestore, doc, docData, setDoc, updateDoc } from '@angular/fire/firestore';
 
 import { User as UserM } from '../models/user';
 

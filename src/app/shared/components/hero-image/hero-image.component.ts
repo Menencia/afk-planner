@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Hero } from '../models/hero';
+import { Hero } from '../../../core/models/hero';
 
 @Component({
   selector: 'app-hero-image',

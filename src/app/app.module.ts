@@ -11,12 +11,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { firebaseConfig } from 'firebase';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroImageComponent } from './hero-image/hero-image.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { PrioritiesComponent } from './priorities/priorities.component';
-import { SignupComponent } from './signup/signup.component';
+import { HeroImageComponent } from './shared/components/hero-image/hero-image.component';
+import { HeroesComponent } from './views/heroes/heroes.component';
+import { HomeComponent } from './views/home/home.component';
+import { LoginComponent } from './views/login/login.component';
+import { PrioritiesComponent } from './views/priorities/priorities.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
