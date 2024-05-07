@@ -5,13 +5,13 @@ export enum Faction {
   Graveborn = 'graveborns',
   Celestial = 'celestials',
   Hypogean = 'hypogeans',
-  Dimensional = 'dimensionals'
+  Dimensional = 'dimensionals',
 }
 
 export enum Type {
   Strength,
   Agility,
-  Intelligence
+  Intelligence,
 }
 
 export enum Classe {
@@ -19,7 +19,7 @@ export enum Classe {
   Tank,
   Ranger,
   Mage,
-  Support
+  Support,
 }
 
 export enum Role {
@@ -31,7 +31,7 @@ export enum Role {
   Buffer,
   Burst,
   Regen,
-  Assassin
+  Assassin,
 }
 
 export enum Ascension {
@@ -47,30 +47,43 @@ export enum Ascension {
   Ascended2,
   Ascended3,
   Ascended4,
-  Ascended5
-};
+  Ascended5,
+}
 
 export class Hero {
-
   id: number = 0;
-  uid: string = '';
-  name: string = '';
-  faction = Faction.Celestial;
-  type = Type.Agility;
-  classe = Classe.Mage;
-  role = Role.Buffer
-  ascend = Ascension.NOT_ACQUIRED;
-  siEnabled = false;
-  si = 0;
-  fi = 0;
-  engrave = 0;
-  gearHand = false;
-  gearHead = false;
-  gearBody = false;
-  gearFoot = false;
-  rc = false;
 
-  constructor() { }
+  uid: string = '';
+
+  name: string = '';
+
+  faction = Faction.Celestial;
+
+  type = Type.Agility;
+
+  classe = Classe.Mage;
+
+  role = Role.Buffer;
+
+  ascend = Ascension.NOT_ACQUIRED;
+
+  siEnabled = false;
+
+  si = 0;
+
+  fi = 0;
+
+  engrave = 0;
+
+  gearHand = false;
+
+  gearHead = false;
+
+  gearBody = false;
+
+  gearFoot = false;
+
+  rc = false;
 
   load(data: Partial<Hero>): Hero {
     Object.assign(this, data);
@@ -78,29 +91,27 @@ export class Hero {
   }
 
   getImage(): string {
-    const name = this.name
-                     .toLocaleLowerCase()
-                     .replace(/ /g, '-');
-    return 'assets/heroes/' + this.id + '-' + name + '.jpg';
+    const name = this.name.toLocaleLowerCase().replace(/ /g, '-');
+    return `assets/heroes/${this.id}-${name}.jpg`;
   }
 
   getGearNumber(): number {
     let res = 0;
-    if (this.gearHand) res ++;
-    if (this.gearHead) res ++;
-    if (this.gearBody) res ++;
-    if (this.gearFoot) res ++;
+    if (this.gearHand) res += 1;
+    if (this.gearHead) res += 1;
+    if (this.gearBody) res += 1;
+    if (this.gearFoot) res += 1;
     return res;
   }
 
   getSiFi(): string {
-    let si = this.si + '';
-    if (si.length === 1) si = '0' + si;
-    return si+this.fi;
+    let si = `${this.si}`;
+    if (si.length === 1) si = `0${si}`;
+    return si + this.fi;
   }
 
   showLvl(): boolean {
-  return this.ascend > Ascension.NOT_ACQUIRED && !this.rc;
+    return this.ascend > Ascension.NOT_ACQUIRED && !this.rc;
   }
 
   hasSI(): boolean {
@@ -149,5 +160,4 @@ export class Hero {
     }
     return undefined;
   }
-
 }

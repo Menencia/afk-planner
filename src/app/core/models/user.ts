@@ -7,14 +7,17 @@ export interface UserSave {
 }
 
 export class User {
-
   uid: string;
+
   name: string;
+
   email: string;
+
   lastConnected: Date;
+
   lastUpdated: Date;
 
-  constructor() { 
+  constructor() {
     this.uid = '';
     this.name = '';
     this.email = '';
@@ -32,8 +35,7 @@ export class User {
   }
 
   export(): UserSave {
-    const {uid, name, email, lastConnected, lastUpdated} = this;
-    return {uid, name, email, lastConnected, lastUpdated};
+    const { uid, name, email, lastConnected, lastUpdated } = this;
+    return { uid, name, email, lastConnected, lastUpdated };
   }
-
 }

@@ -1,141 +1,206 @@
 <div class="flex">
   <div class="flex-1">
     <h1 class="text-3xl font-bold">
-      Heroes <span class="bg-gray-500 rounded text-sm mr-2 px-2.5 py-0.5 align-middle	text-white">
-        {{nbrHeroes}}/{{filteredHeroes.length}}
+      Heroes
+      <span
+        class="bg-gray-500 rounded text-sm mr-2 px-2.5 py-0.5 align-middle text-white"
+      >
+        {{ nbrHeroes }}/{{ filteredHeroes.length }}
       </span>
     </h1>
   </div>
 
   <div>
-    <span class="material-icons-outlined cursor-pointer" (click)="filter()">
+    <button class="cursor-pointer material-icons-outlined" (click)="filter()">
       tune
-    </span>
+    </button>
   </div>
 </div>
 
 <div class="uk-grid-divider" uk-grid>
   <div class="uk-width-2-3@m">
-
     <ul class="uk-list uk-list-divider" *ngIf="mode === Mode.Detailed">
-      <li *ngFor="let hero of filteredHeroes" 
-          (click)="editHero(hero)" 
-          uk-toggle="target: #editHero"
-          class="py-2 cursor-pointer hover:bg-orange-200 hover:dark:bg-gray-600">
-          <div class="flex flex-row">
-            <div class="flex-1">{{hero.name}}</div>
-            <div class="flex-1">{{'ascend' + hero.ascend | translate}}</div>
-            <div class="flex-1">
-              <span *ngIf="hero.si > 0 || hero.fi > 0">
-                {{hero.getSiFi()}}<span *ngIf="hero.engrave > 0">e{{hero.engrave}}</span>
-              </span>
-            </div>
-            <div class="flex-1">
-              <span *ngIf="hero.getGearNumber() > 0">
-                T3<span class="font-semibold">x{{hero.getGearNumber()}} </span>
-              </span>
-            </div>
-            <div class="flex-1">
-              <span *ngIf="hero.showLvl()">
-                lvl1
-              </span>
-            </div>
+      <li
+        *ngFor="let hero of filteredHeroes"
+        (click)="editHero(hero)"
+        (keypress)="editHero(hero)"
+        tabindex="0"
+        uk-toggle="target: #editHero"
+        class="py-2 cursor-pointer hover:bg-orange-200 hover:dark:bg-gray-600"
+      >
+        <div class="flex flex-row">
+          <div class="flex-1">{{ hero.name }}</div>
+          <div class="flex-1">{{ "ascend" + hero.ascend | translate }}</div>
+          <div class="flex-1">
+            <span *ngIf="hero.si > 0 || hero.fi > 0">
+              {{ hero.getSiFi()
+              }}<span *ngIf="hero.engrave > 0">e{{ hero.engrave }}</span>
+            </span>
           </div>
+          <div class="flex-1">
+            <span *ngIf="hero.getGearNumber() > 0">
+              T3<span class="font-semibold">x{{ hero.getGearNumber() }} </span>
+            </span>
+          </div>
+          <div class="flex-1">
+            <span *ngIf="hero.showLvl()"> lvl1 </span>
+          </div>
+        </div>
       </li>
     </ul>
 
     <div *ngIf="mode === Mode.Standard">
-      <app-hero-image 
-        [hero]="hero" 
+      <app-hero-image
+        [hero]="hero"
         *ngFor="let hero of filteredHeroes"
-        (click)="editHero(hero)"></app-hero-image>
+        (click)="editHero(hero)"
+      ></app-hero-image>
     </div>
   </div>
 
   <div class="uk-width-1-3@m"></div>
 </div>
 
-<div aria-hidden="true" 
-     (click)="onBlur($event)"
-     [class.hidden]="!displayEditModal"
-     class="modal bg-gray-900 bg-opacity-80 overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-  <div class="relative w-auto my-6 mx-auto max-w-3xl">
-      <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <div class="p-10" *ngIf="currentHero">
-          <div class="flex mb-5">
-            <app-hero-image [hero]="currentHero"></app-hero-image>
-            <p class="grow font-semibold">{{currentHero.name}}</p>
-            <div>
-              <span class="material-icons-outlined cursor-pointer" (click)="closeModal()">
-                close
-              </span>
-            </div>
+<div
+  aria-hidden="true"
+  (click)="onBlur($event)"
+  [class.hidden]="!displayEditModal"
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto bg-gray-900 outline-none modal bg-opacity-80 focus:outline-none"
+>
+  <div class="relative w-auto max-w-3xl mx-auto my-6">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="p-10" *ngIf="currentHero">
+        <div class="flex mb-5">
+          <app-hero-image [hero]="currentHero"></app-hero-image>
+          <p class="font-semibold grow">{{ currentHero.name }}</p>
+          <div>
+            <span
+              class="cursor-pointer material-icons-outlined"
+              (click)="closeModal()"
+            >
+              close
+            </span>
           </div>
-          <div class="flex flex-col">
-            <div class="mb-4">
-              <label class="ui-label">Ascend</label>
-              <select name="si" type="number" [(ngModel)]="currentHero.ascend" (blur)="saveHero(currentHero)" class="ui-input">
-                <option *ngFor="let a of ascendList" [ngValue]="a">{{'ascend' + a | translate}}</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label class="ui-label">SI</label>
-              <input name="si" type="number" [(ngModel)]="currentHero.si" (blur)="saveHero(currentHero)" class="ui-input" />
-            </div>
-            <div class="mb-4">
-              <label class="ui-label">FI</label>
-              <input name="si" type="number" [(ngModel)]="currentHero.fi" (blur)="saveHero(currentHero)" class="ui-input" />
-            </div>
-            <div class="mb-4">
-              <label class="ui-label">Engrave</label>
-              <input name="si" type="number" [(ngModel)]="currentHero.engrave" (blur)="saveHero(currentHero)" class="ui-input" />
-            </div>
-            <div class="mb-4">
-              <label class="ui-label">Gear (T3)</label>
-              <img [src]="'assets/gear/' + currentHero.type + '/hand.jpg'" 
-                   class="gear"
-                   [class.active]="currentHero.gearHand"
-                   (click)="toggleGearHand(currentHero)" />
-              <img [src]="'assets/gear/' + currentHero.type + '/head.jpg'" 
-                   class="gear"
-                   [class.active]="currentHero.gearHead"
-                   (click)="toggleGearHead(currentHero)" />
-              <img [src]="'assets/gear/' + currentHero.type + '/body.jpg'" 
-                   class="gear"
-                   [class.active]="currentHero.gearBody"
-                   (click)="toggleGearBody(currentHero)" />
-              <img [src]="'assets/gear/' + currentHero.type + '/foot.jpg'" 
-                   class="gear"
-                   [class.active]="currentHero.gearFoot"
-                   (click)="toggleGearFoot(currentHero)" />
-            </div>
-            <div class="mb-4">
-              <label class="ui-label">RC</label>
-              <input name="si" type="checkbox" [(ngModel)]="currentHero.rc" (change)="saveHero(currentHero)" />
-            </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="mb-4">
+            <label class="ui-label" for="hero-ascend">Ascend</label>
+            <select
+              name="ascend"
+              id="hero-ascend"
+              type="number"
+              [(ngModel)]="currentHero.ascend"
+              (blur)="saveHero(currentHero)"
+              class="ui-input"
+            >
+              <option *ngFor="let a of ascendList" [ngValue]="a">
+                {{ "ascend" + a | translate }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="ui-label" for="hero-si">SI</label>
+            <input
+              name="si"
+              id="hero-si"
+              type="number"
+              [(ngModel)]="currentHero.si"
+              (blur)="saveHero(currentHero)"
+              class="ui-input"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="ui-label" for="hero-fi">FI</label>
+            <input
+              name="fi"
+              id="hero-fi"
+              type="number"
+              [(ngModel)]="currentHero.fi"
+              (blur)="saveHero(currentHero)"
+              class="ui-input"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="ui-label" for="hero-engrave">Engrave</label>
+            <input
+              name="engrave"
+              id="hero-engrave"
+              type="number"
+              [(ngModel)]="currentHero.engrave"
+              (blur)="saveHero(currentHero)"
+              class="ui-input"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="ui-label" for="none">Gear (T3)</label>
+            <img
+              [src]="'assets/gear/' + currentHero.type + '/hand.jpg'"
+              class="gear"
+              [class.active]="currentHero.gearHand"
+              (click)="toggleGearHand(currentHero)"
+              alt="gear hand"
+            />
+            <img
+              [src]="'assets/gear/' + currentHero.type + '/head.jpg'"
+              class="gear"
+              [class.active]="currentHero.gearHead"
+              (click)="toggleGearHead(currentHero)"
+              alt="gear head"
+            />
+            <img
+              [src]="'assets/gear/' + currentHero.type + '/body.jpg'"
+              class="gear"
+              [class.active]="currentHero.gearBody"
+              (click)="toggleGearBody(currentHero)"
+              alt="gear body"
+            />
+            <img
+              [src]="'assets/gear/' + currentHero.type + '/foot.jpg'"
+              class="gear"
+              [class.active]="currentHero.gearFoot"
+              (click)="toggleGearFoot(currentHero)"
+              alt="gear foot"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="ui-label" for="hero-rc">RC</label>
+            <input
+              name="rc"
+              id="hero-rc"
+              type="checkbox"
+              [(ngModel)]="currentHero.rc"
+              (change)="saveHero(currentHero)"
+            />
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
-<div aria-hidden="true" 
-     (click)="onBlur($event)"
-     [class.hidden]="!displayFilterModal"
-     class="modal bg-gray-900 bg-opacity-80 overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-  <div class="relative w-auto my-6 mx-auto max-w-3xl">
-      <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <div class="p-10">
-          <div>Filters: 
-            <img *ngFor="let faction of factions" 
-                  (click)="filterFaction(faction)" 
-                  class="opacity-50 cursor-pointer inline-block w-8 ml-2"
-                  [class.opacity-100]="currentFilter === faction"
-                  [src]="'assets/factions/' + faction + '.png'" />
-          </div>
+<div
+  aria-hidden="true"
+  (click)="onBlur($event)"
+  [class.hidden]="!displayFilterModal"
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto bg-gray-900 outline-none modal bg-opacity-80 focus:outline-none"
+>
+  <div class="relative w-auto max-w-3xl mx-auto my-6">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="p-10">
+        <div>
+          Filters:
+          <img
+            *ngFor="let faction of factions"
+            (click)="filterFaction(faction)"
+            class="inline-block w-8 ml-2 opacity-50 cursor-pointer"
+            [class.opacity-100]="currentFilter === faction"
+            [src]="'assets/factions/' + faction + '.png'"
+            alt="faction {{ faction }}"
+          />
         </div>
       </div>
+    </div>
   </div>
 </div>

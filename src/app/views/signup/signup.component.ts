@@ -2,25 +2,39 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../core/models/user';
+
 import { AuthService } from '../../core/services/auth.service';
+
+interface FormValues {
+  name: string;
+  email: string;
+  password: string;
+  passwordRepeat: string;
+}
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [FormsModule, NgIf],
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  values: FormValues;
 
-  values: any;
   status: string = '';
 
   constructor(
     public auth: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+  ) {
+    this.values = {
+      name: '',
+      email: '',
+      password: '',
+      passwordRepeat: '',
+    };
+  }
 
   ngOnInit(): void {
     this.resetValues();
@@ -36,12 +50,13 @@ export class SignupComponent implements OnInit {
   }
 
   createAccount(): void {
-    const {name, email, password, passwordRepeat} = this.values;
+    const { name, email, password, passwordRepeat } = this.values;
 
     // checkings
     let check = true;
     if (!name || !/^[a-zA-Z0-9]+$/.test(name)) {
-      this.status = 'Le pseudo est obligatoire (caractères autorisés: a-z, A-Z, 0-9).';
+      this.status =
+        'Le pseudo est obligatoire (caractères autorisés: a-z, A-Z, 0-9).';
       check = false;
     }
     if (password !== passwordRepeat) {
@@ -50,27 +65,27 @@ export class SignupComponent implements OnInit {
     }
 
     if (check) {
-      this.auth.createAccount(name, email, password)
+      this.auth
+        .createAccount(name, email, password)
         .then(() => {
           this.resetValues();
           this.status = 'Votre compte a créé avec succès.';
-          this.auth.loginWithPassword(email, password)
+          this.auth
+            .loginWithPassword(email, password)
             .then(() => {
-              this.auth.user$.subscribe(data => {
+              this.auth.user$.subscribe((data) => {
                 if (data) {
-                  const user = new User().load(data);
                   this.router.navigateByUrl('/heroes');
                 }
               });
             })
-            .catch(error => {
+            .catch((error) => {
               this.status = error.message;
             });
         })
-        .catch(error => {
+        .catch((error) => {
           this.status = error.message;
         });
     }
   }
-
 }

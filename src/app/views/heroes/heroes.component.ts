@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeroImageComponent } from 'src/app/shared/components/hero-image/hero-image.component';
+
 import { Ascension, Faction, Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
 
 enum Mode {
   Standard,
-  Detailed
+  Detailed,
 }
 
 @Component({
@@ -18,26 +19,35 @@ enum Mode {
   standalone: true,
   imports: [FormsModule, NgFor, NgIf, TranslateModule, HeroImageComponent],
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.scss']
+  styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {
-
   heroes: Hero[] = [];
+
   nbrHeroes = 0;
+
   filteredHeroes: Hero[] = [];
+
   currentHero: Hero | null = null;
+
   factions: Faction[];
+
   currentFilter: Faction | null = null;
+
   displayEditModal = false;
+
   displayFilterModal = false;
+
   ascendList: Ascension[];
+
   mode: Mode = Mode.Detailed;
+
   Mode = Mode;
 
   constructor(
     public accountService: AccountService,
     public dataService: DataService,
-    public router: Router
+    public router: Router,
   ) {
     this.factions = [
       Faction.LightBearer,
@@ -46,7 +56,7 @@ export class HeroesComponent implements OnInit {
       Faction.Graveborn,
       Faction.Celestial,
       Faction.Hypogean,
-      Faction.Dimensional
+      Faction.Dimensional,
     ];
     this.ascendList = [
       Ascension.NOT_ACQUIRED,
@@ -61,7 +71,7 @@ export class HeroesComponent implements OnInit {
       Ascension.Ascended2,
       Ascension.Ascended3,
       Ascension.Ascended4,
-      Ascension.Ascended5
+      Ascension.Ascended5,
     ];
   }
 
@@ -77,8 +87,9 @@ export class HeroesComponent implements OnInit {
   filterFaction(faction: Faction) {
     if (this.currentFilter !== faction) {
       this.currentFilter = faction;
-      this.setFilteredHeroes(this.heroes
-        .filter(hero => hero.faction === faction))
+      this.setFilteredHeroes(
+        this.heroes.filter((hero) => hero.faction === faction),
+      );
     } else {
       this.currentFilter = null;
       this.setFilteredHeroes(this.heroes);
@@ -91,8 +102,9 @@ export class HeroesComponent implements OnInit {
   }
 
   updateNbrHeroes() {
-    this.nbrHeroes = this.filteredHeroes
-      .filter(h => h.ascend > Ascension.NOT_ACQUIRED).length;
+    this.nbrHeroes = this.filteredHeroes.filter(
+      (h) => h.ascend > Ascension.NOT_ACQUIRED,
+    ).length;
   }
 
   sortHeroes(a: Hero, b: Hero) {
@@ -152,11 +164,10 @@ export class HeroesComponent implements OnInit {
     this.saveHero(hero);
   }
 
-  onBlur(event: any) {
-    if (event.target.classList.value.includes('modal')) {
+  onBlur(event: MouseEvent) {
+    if ((event.target as Element).classList.value.includes('modal')) {
       this.displayEditModal = false;
       this.displayFilterModal = false;
     }
   }
-
 }

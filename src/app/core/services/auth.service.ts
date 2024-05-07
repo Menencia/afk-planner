@@ -1,19 +1,32 @@
 import { Injectable } from '@angular/core';
+import {
+  Auth,
+  User,
+  UserCredential,
+  authState,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from '@angular/fire/auth';
+import {
+  DocumentData,
+  Firestore,
+  doc,
+  docData,
+  setDoc,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { Firestore, doc, docData, setDoc, updateDoc } from '@angular/fire/firestore';
-
-import { User as UserM } from '../models/user';
+import { User as UserM, UserSave } from '../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  user$: Observable<any | undefined>;
+  user$: Observable<DocumentData | undefined>;
 
   constructor(
     public afAuth: Auth,
@@ -27,17 +40,29 @@ export class AuthService {
         }
 
         return of(undefined);
-      })
+      }),
     );
   }
 
-  async createAccount(name: string, email: string, password: string): Promise<void> {
-    const credentials = await createUserWithEmailAndPassword(this.afAuth, email, password)
+  async createAccount(
+    name: string,
+    email: string,
+    password: string,
+  ): Promise<void> {
+    const credentials = await createUserWithEmailAndPassword(
+      this.afAuth,
+      email,
+      password,
+    );
     this.createUser(credentials.user, name, email);
   }
 
   async loginWithPassword(email: string, password: string): Promise<void> {
-    const credentials = await signInWithEmailAndPassword(this.afAuth, email, password)
+    const credentials: UserCredential = await signInWithEmailAndPassword(
+      this.afAuth,
+      email,
+      password,
+    );
     this.updateUser(credentials.user);
   }
 
@@ -45,52 +70,54 @@ export class AuthService {
     await signOut(this.afAuth);
   }
 
-  private createUser(user: any, name: string, email: string) {
+  private createUser(user: User, name: string, email: string) {
     const userRef = doc(this.firestore, `users/${user.uid}`);
 
     const userObj = {
       uid: user.uid,
       name,
       email,
-      lastConnected: new Date()
+      lastConnected: new Date(),
     };
 
     return setDoc(userRef, userObj, { merge: true });
   }
 
-  private updateUser(user: any): Promise<void> {
+  private updateUser(user: User): Promise<void> {
     const userRef = doc(this.firestore, `users/${user.uid}`);
 
     const userObj = {
-      lastConnected: new Date()
+      lastConnected: new Date(),
     };
 
     return updateDoc(userRef, userObj);
   }
 
   getUser(): Promise<UserM | undefined> {
-    return this.user$.pipe(
-      take(1),
-      map(data => {
-        if (data) {
-          return new UserM().load(data);
-        }
+    return this.user$
+      .pipe(
+        take(1),
+        map((data) => {
+          if (data) {
+            return new UserM().load(data as UserSave);
+          }
 
-        return undefined;
-      })
-    ).toPromise();
+          return undefined;
+        }),
+      )
+      .toPromise();
   }
 
   isSigned(): Observable<boolean> {
     return this.user$.pipe(
       take(1),
-      map(data => {
+      map((data) => {
         if (data) {
           return true;
         }
 
         return false;
-      })
-    )
+      }),
+    );
   }
 }

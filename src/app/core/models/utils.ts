@@ -1,23 +1,23 @@
 export enum Status {
-    Primary = 'primary',
-    Danger = 'danger'
+  Primary = 'primary',
+  Danger = 'danger',
 }
 
 export class Utils {
-
-  static notify(msg: string, status = Status.Primary): void {
+  static notify(msg: string): void {
     const msgError = 'The user account has been disabled by an administrator.';
     if (msg === msgError) {
-      msg = 'Votre compte doit être activé par un admin.';
+      // eslint-disable-next-line no-console
+      console.log('Votre compte doit être activé par un admin.');
     }
-    /*UIkit.notification(msg, {
+    /* UIkit.notification(msg, {
       status,
       pos: 'bottom-right'
-    });*/
+    }); */
   }
 
   static loadImage(src: string): Promise<HTMLImageElement | undefined> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const image = new Image();
       image.src = src;
       image.onload = () => {
@@ -25,8 +25,7 @@ export class Utils {
       };
       image.onerror = () => {
         resolve(undefined);
-      }
+      };
     });
   }
-
 }

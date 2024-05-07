@@ -1,47 +1,40 @@
-<nav class="flex items-center gap-5 p-3 bg-gray-200 dark:bg-gray-800 dark:text-white" id="step10">
-  <div class="text-red-500 tracking-wider text-2xl">
-    AFK/planner
-  </div>
+<nav
+  class="flex items-center gap-5 p-3 bg-gray-200 dark:bg-gray-800 dark:text-white"
+  id="step10"
+>
+  <div class="text-2xl tracking-wider text-red-500">AFK/planner</div>
 
   <ng-container *ngIf="user; else showLogin">
     <a routerLink="/heroes" routerLinkActive="active">
-      {{'Heroes' | translate}}
+      {{ "Heroes" | translate }}
     </a>
     <a routerLink="/priorities" routerLinkActive="active">
-      {{'Priorities' | translate}}
+      {{ "Priorities" | translate }}
     </a>
-    <a href="#" (click)="logout()">
-      logout
-    </a>
+    <a href="#" (click)="logout()"> logout </a>
   </ng-container>
 
   <ng-template #showLogin>
-    <a routerLink="/home" routerLinkActive="active">
-      home
-    </a>
-    <a routerLink="/signup" routerLinkActive="active">
-      signup
-    </a>
-    <a routerLink="/login" routerLinkActive="active">
-      login
-    </a>
+    <a routerLink="/home" routerLinkActive="active"> home </a>
+    <a routerLink="/signup" routerLinkActive="active"> signup </a>
+    <a routerLink="/login" routerLinkActive="active"> login </a>
   </ng-template>
 
   <div class="flex-grow"></div>
   <div>
-    <div class="cursor-pointer" (click)="toggleDark()">
+    <button class="cursor-pointer" (click)="toggleDark()">
       <span *ngIf="theme === 'light'" class="material-icons-outlined">
         light_mode
       </span>
       <span *ngIf="theme === 'dark'" class="material-icons-outlined">
         dark_mode
       </span>
-    </div>
+    </button>
   </div>
 </nav>
 
-<div class="bg-white dark:bg-gray-800 py-5">
-  <div class="container mx-auto ">
+<div class="py-5 bg-white dark:bg-gray-800">
+  <div class="container mx-auto">
     <router-outlet></router-outlet>
   </div>
 </div>

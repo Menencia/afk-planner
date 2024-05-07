@@ -2,73 +2,76 @@
 <div>
   <div>
     <form #signup="ngForm">
-
       <div class="mb-4">
-        <div class="ui-label">
-          Pseudo
-        </div>
+        <div class="ui-label">Pseudo</div>
         <div class="uk-form-controls">
-          <input class="ui-input"
+          <input
+            class="ui-input"
             id="name"
             name="name"
             type="text"
             [(ngModel)]="values.name"
             #name="ngModel"
-            required>
+            required
+          />
         </div>
       </div>
 
       <div class="mb-4">
-        <div class="ui-label">
-          Email
-        </div>
+        <div class="ui-label">Email</div>
         <div class="uk-form-controls">
-          <input class="ui-input"
+          <input
+            class="ui-input"
             id="signupEmail"
             name="signupEmail"
             type="text"
             [(ngModel)]="values.email"
             #signupEmail="ngModel"
-            required>
+            required
+          />
         </div>
       </div>
 
       <div class="mb-4">
-        <div class="ui-label">
-          Password
-        </div>
+        <div class="ui-label">Password</div>
         <div class="uk-form-controls">
-          <input class="ui-input"
+          <input
+            class="ui-input"
             id="signupPassword"
             name="signupPassword"
             type="password"
             [(ngModel)]="values.password"
             #signupPassword="ngModel"
-            required>
+            required
+          />
         </div>
       </div>
 
       <div class="mb-4">
-        <div class="ui-label">
-          Repeat password
-        </div>
+        <div class="ui-label">Repeat password</div>
         <div class="uk-form-controls">
-          <input class="ui-input"
+          <input
+            class="ui-input"
             id="signupPasswordRepeat"
             name="signupPasswordRepeat"
             type="password"
             [(ngModel)]="values.passwordRepeat"
             #signupPassword="ngModel"
-            required>
+            required
+          />
         </div>
       </div>
 
-      <button class="ui-button"
+      <button
+        class="ui-button"
         [disabled]="!signup.form.valid"
-        (click)="createAccount()">Confirm</button>
+        (click)="createAccount()"
+      >
+        Confirm
+      </button>
     </form>
   </div>
   <div *ngIf="status !== ''">
-    {{status}}
+    {{ status }}
   </div>
 </div>
