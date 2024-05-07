@@ -1,0 +1,10 @@
+<img
+  *ngFor="let f of factions"
+  (click)="onClick(f)"
+  (keypress)="onClick(f)"
+  tabindex="0"
+  [class]="{ 'opacity-100': faction === f, 'opacity-50': faction !== f }"
+  class="inline-block w-8 ml-2 cursor-pointer"
+  [src]="'assets/factions/' + f + '.png'"
+  alt="faction {{ f }}"
+/>

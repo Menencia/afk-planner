@@ -6,17 +6,26 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Ascension } from 'src/app/core/enums/ascension';
 import { Faction } from 'src/app/core/enums/faction';
 import { getAscendPosition } from 'src/app/core/utils/ascend.utils';
+import { getFactionList } from 'src/app/core/utils/faction.utils';
 
 import { Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
 
 import { HeroEditComponent } from './components/hero-edit/hero-edit.component';
+import { SwitchFactionComponent } from './components/switch-faction/switch-faction.component';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf, TranslateModule, HeroEditComponent],
+  imports: [
+    FormsModule,
+    NgFor,
+    NgIf,
+    TranslateModule,
+    HeroEditComponent,
+    SwitchFactionComponent,
+  ],
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
 })
@@ -29,29 +38,15 @@ export class HeroesComponent implements OnInit {
 
   currentHero?: Hero;
 
-  factions: Faction[];
-
-  currentFilter: Faction | null = null;
+  factions = getFactionList();
 
   displayEditModal = false;
-
-  displayFilterModal = false;
 
   constructor(
     public accountService: AccountService,
     public dataService: DataService,
     public router: Router,
-  ) {
-    this.factions = [
-      Faction.LightBearer,
-      Faction.Mauler,
-      Faction.Wilder,
-      Faction.Graveborn,
-      Faction.Celestial,
-      Faction.Hypogean,
-      Faction.Dimensional,
-    ];
-  }
+  ) {}
 
   ngOnInit() {
     this.getHeroes();
@@ -62,14 +57,12 @@ export class HeroesComponent implements OnInit {
     this.setFilteredHeroes(this.heroes);
   }
 
-  filterFaction(faction: Faction) {
-    if (this.currentFilter !== faction) {
-      this.currentFilter = faction;
+  filterFaction(faction?: Faction) {
+    if (faction) {
       this.setFilteredHeroes(
         this.heroes.filter((hero) => hero.faction === faction),
       );
     } else {
-      this.currentFilter = null;
       this.setFilteredHeroes(this.heroes);
     }
   }
@@ -104,24 +97,10 @@ export class HeroesComponent implements OnInit {
     this.displayEditModal = true;
   }
 
-  filter() {
-    this.displayFilterModal = true;
-  }
-
-  closeHero(): void {
-    this.currentHero = undefined;
-  }
-
   saveHero() {
     if (this.currentHero) {
       this.dataService.saveHero(this.currentHero);
       this.updateNbrHeroes();
-    }
-  }
-
-  onBlur(event: MouseEvent) {
-    if ((event.target as Element).classList.value.includes('modal')) {
-      this.displayFilterModal = false;
     }
   }
 }
