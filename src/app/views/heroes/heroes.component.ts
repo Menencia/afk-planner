@@ -9,11 +9,6 @@ import { Ascension, Faction, Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
 import { DataService } from '../../core/services/data.service';
 
-enum Mode {
-  Standard,
-  Detailed,
-}
-
 @Component({
   selector: 'app-heroes',
   standalone: true,
@@ -39,10 +34,6 @@ export class HeroesComponent implements OnInit {
   displayFilterModal = false;
 
   ascendList: Ascension[];
-
-  mode: Mode = Mode.Detailed;
-
-  Mode = Mode;
 
   constructor(
     public accountService: AccountService,
