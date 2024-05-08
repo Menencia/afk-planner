@@ -1,12 +1,13 @@
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-col-name',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, NgIf],
   template: `<div [class]="getClass()">
-    {{ 'heroesName.' + name | translate }}
+    <span *ngIf="isAwakened">A-</span>{{ 'heroesName.' + name | translate }}
   </div>`,
 })
 export class ColNameComponent {
@@ -15,6 +16,8 @@ export class ColNameComponent {
   @Input() full = false;
 
   @Input() rc = false;
+
+  @Input() isAwakened = false;
 
   getClass() {
     return {

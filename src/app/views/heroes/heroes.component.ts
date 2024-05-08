@@ -93,7 +93,7 @@ export class HeroesComponent implements OnInit {
 
   updateNbrHeroes() {
     this.nbrHeroes = this.filteredHeroes.filter(
-      (h) => h.ascend > Ascension.None,
+      (h) => h.ascend !== Ascension.None,
     ).length;
   }
 
