@@ -1,6 +1,9 @@
 <p-dialog
   header="Hero edit"
   [modal]="true"
+  [draggable]="false"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
   [visible]="visible"
   (visibleChange)="visibleChange.emit($event)"
   [style]="{ width: '25rem' }"

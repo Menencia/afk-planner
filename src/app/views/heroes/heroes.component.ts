@@ -57,6 +57,8 @@ export class HeroesComponent implements OnInit {
 
   currentHero?: Hero;
 
+  currentFaction?: Faction;
+
   factions = getFactionList();
 
   displayEditModal = false;
@@ -77,6 +79,7 @@ export class HeroesComponent implements OnInit {
   }
 
   filterFaction(faction?: Faction) {
+    this.currentFaction = faction;
     if (faction) {
       this.setFilteredHeroes(
         this.heroes.filter((hero) => hero.faction === faction),
@@ -122,7 +125,7 @@ export class HeroesComponent implements OnInit {
     if (this.currentHero) {
       this.dataService.saveHero(this.currentHero);
       this.updateNbrHeroes();
-      this.setFilteredHeroes(this.heroes);
+      this.filterFaction(this.currentFaction);
     }
   }
 }
