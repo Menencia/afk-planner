@@ -7,6 +7,7 @@ import { Ascension } from 'src/app/core/enums/ascension';
 import { Gear } from 'src/app/core/enums/gear';
 import { Hero } from 'src/app/core/models/hero';
 import { getAscendList } from 'src/app/core/utils/ascend.utils';
+import { getGearList } from 'src/app/core/utils/gear.utils';
 
 @Component({
   selector: 'app-hero-edit',
@@ -26,14 +27,7 @@ export class HeroEditComponent {
 
   ascendList: Ascension[] = getAscendList();
 
-  gearList: Gear[] = [
-    Gear.None,
-    Gear.Custom,
-    Gear.Resonance,
-    Gear.T2All,
-    Gear.T3All,
-    Gear.T4All,
-  ];
+  gearList: Gear[] = getGearList();
 
   saveHero() {
     this.heroChange.emit();

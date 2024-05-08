@@ -12,6 +12,7 @@ import {
   getFactionIndex,
   getFactionList,
 } from 'src/app/core/utils/faction.utils';
+import { getGearIndex } from 'src/app/core/utils/gear.utils';
 
 import { Hero } from '../../core/models/hero';
 import { AccountService } from '../../core/services/account.service';
@@ -111,6 +112,8 @@ export class HeroesComponent implements OnInit {
     if (a.fi < b.fi) return 1;
     if (a.si > b.si) return -1;
     if (a.si < b.si) return 1;
+    if (getGearIndex(a.gear) > getGearIndex(b.gear)) return -1;
+    if (getGearIndex(a.gear) < getGearIndex(b.gear)) return 1;
     if (getAscendIndex(a.ascend) > getAscendIndex(b.ascend)) return -1;
     if (getAscendIndex(a.ascend) < getAscendIndex(b.ascend)) return 1;
     return 0;
