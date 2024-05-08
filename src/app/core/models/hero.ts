@@ -5,18 +5,29 @@ import { Klass } from '../enums/klass';
 import { Role } from '../enums/role';
 import { Type } from '../enums/type';
 
+export interface HeroJson {
+  id: number;
+  name: string;
+  type: Type;
+  class: Klass;
+  role: Role;
+  slug: string;
+  faction: Faction;
+  isAwakened?: boolean;
+}
+
 export class Hero {
-  id: number = 0;
+  id = 0;
 
-  uid: string = '';
+  uid = '';
 
-  name: string = '';
+  name = '';
 
   faction = Faction.Celestial;
 
   type = Type.Agility;
 
-  classe = Klass.Mage;
+  class = Klass.Mage;
 
   role = Role.Buffer;
 
@@ -34,7 +45,20 @@ export class Hero {
 
   rc = false;
 
-  load(data: Partial<Hero>): Hero {
+  isAwakened = false;
+
+  loadFromJson(data: HeroJson): Hero {
+    this.id = data.id;
+    this.name = data.slug;
+    this.type = data.type;
+    this.class = data.class;
+    this.role = data.role;
+    this.faction = data.faction;
+    this.isAwakened = data.isAwakened ?? false;
+    return this;
+  }
+
+  loadFromDB(data: Partial<Hero>): Hero {
     Object.assign(this, data);
     return this;
   }

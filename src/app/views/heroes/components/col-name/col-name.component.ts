@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   template: `<div [class]="getClass()">
-    {{ name }}
+    {{ 'heroesName.' + name | translate }}
   </div>`,
 })
 export class ColNameComponent {

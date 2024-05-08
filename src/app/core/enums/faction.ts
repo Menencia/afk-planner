@@ -6,5 +6,5 @@ export enum Faction {
   Celestial = 'celestials',
   Hypogean = 'hypogeans',
   Dimensional = 'dimensionals',
-  Draconic = 'draconics',
+  Draconis = 'draconis',
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Subject } from 'rxjs';
 
-import { Hero } from '../models/hero';
+import { Hero, HeroJson } from '../models/hero';
 import { PrioritySi } from '../models/priorities/priority-si';
 import { Save } from '../models/save';
 
@@ -30,10 +30,10 @@ export class AccountService {
       return this.heroes;
     }
 
-    const heroes$ = this.http.get('assets/heroes.json');
-    const heroes = (await firstValueFrom(heroes$)) as Partial<Hero>[];
-    this.heroes = heroes.map((heroSave: Partial<Hero>) => {
-      return new Hero().load(heroSave);
+    const heroes$ = this.http.get<HeroJson[]>('assets/heroes.json');
+    const heroes = await firstValueFrom(heroes$);
+    this.heroes = heroes.map((heroSave) => {
+      return new Hero().loadFromJson(heroSave);
     });
 
     // build save
@@ -41,10 +41,10 @@ export class AccountService {
     save.heroes = await this.dataService.getHeroes();
 
     // load save
-    save.heroes.forEach((heroSave: Partial<Hero>) => {
+    save.heroes.forEach((heroSave) => {
       const hero = this.heroes.find((h) => h.id === heroSave.id);
       if (hero) {
-        hero.load(heroSave);
+        hero.loadFromDB(heroSave);
       }
     });
 

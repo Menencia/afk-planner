@@ -9,6 +9,7 @@ export function getFactionList(): Faction[] {
     Faction.Celestial,
     Faction.Hypogean,
     Faction.Dimensional,
+    Faction.Draconis,
   ];
 }
 
